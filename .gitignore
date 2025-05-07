@@ -1,0 +1,32 @@
+# Ignore AL for Business Central specific files and directories
+
+# Business Central app source files
+.alpackages/
+.altestrunner
+.vscode
+.app/
+.app-source/
+.symbols/
+.packagecache/
+AppSourceCop/
+TestTool/
+
+# Compiled and generated files
+*.app
+*.navx
+*.zup
+*.alpackages
+*.alx
+*.alpackages.zip
+
+# Temporary files
+[Content].al
+[PageExtension].al
+[TableExtension].al
+[ReportExtension].al
+[QueryExtension].al
+[EnumExtension].al
+[EventSubscriber].al
+[Enum].al
+[FieldGroup].al
+[Interface].al

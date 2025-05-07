@@ -1,0 +1,37 @@
+{
+  "id": "0959b6f9-1c39-4618-ac4c-9c7096158431",
+  "name": "SeerBit Payments",
+  "publisher": "Seerbit Technology Limited",
+  "version": "2.0.1.5",
+  "brief": "Accept local and international payments from customers across Africa using multiple Payment Methods",
+  "description": "Empower and scale your business to receive and make payments locally and internationally in your respective markets of operations with Seerbit Payments. With Seerbit Payments you can seamlessly collect payments from customers via debit or credit cards, transfers, bank accounts, USSD, Payment links, and mobile money on your websites or mobile apps.  Process your online and in-person payments seamlessly from your customers (locally and globally) using multiple payment methods and a robust dashboard for insights to enable you manage all payment experiences and customer transactions in one place on Business Central.  With no complex integration required, you can process online and in-person payment for your customers across Africa in simple steps. Let your customers pay you how they want with our suite of payment products. Nigeria, Ghana, Uganda, Senegal, Cote D'Ivoire, Tanzania, Zambia, Kenya, Burkina Faso, Gambia etc",
+  "privacyStatement": "https://www.seerbit.com/acceptable-use-policy",
+  "EULA": "https://www.seerbit.com/merchant-agreement",
+  "help": "https://support.seerbit.com/kb-tickets/new",
+  "url": "https://www.seerbit.com/",
+  "logo": "images/Seerbit_logo.png",
+  "contextSensitiveHelpUrl": "https://support.seerbit.com/kb-tickets/new",
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "22.0.0.0",
+  "supportedLocales": ["en-US","en-GB"],
+  "idRanges": [
+    {
+      "from": 71855575,
+      "to": 71856574
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": false,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": false
+  },
+  "runtime": "11.0",
+  "features": [
+    "NoImplicitWith",
+    "AllTranslationItems",
+    "TranslationFile",
+    "UseLegacyAnalyzerStrategy"
+  ],
+"dependencies": []
+}

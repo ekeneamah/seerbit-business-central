@@ -1,0 +1,55 @@
+Payload: {
+    "token": "\"u9VexNcom8hy/FZt1T8Ddw==\"",
+    "publicKey": "",
+    "invoices": [
+        {
+            "orderNo": "S-INV102199",
+            "dueDate": "2025-05-01",
+            "currency": "",
+            "receiversName": "Adatum Corporation",
+            "customerEmail": "robert.townes@contoso.com",
+            "invoiceItems": [
+                {
+                    "itemName": "MEXICO Swivel Chair, black",
+                    "quantity": "5",
+                    "rate": "190.10",
+                    "tax": "3.00053"
+                },
+                {
+                    "itemName": "ATLANTA Whiteboard, base",
+                    "quantity": "7",
+                    "rate": "1397.30",
+                    "tax": "2.99997"
+                },
+                {
+                    "itemName": "Thank you for ordering",
+                    "quantity": "0",
+                    "rate": "0.00",
+                    "tax": "0"
+                }
+            ]
+        },
+        {
+            "orderNo": "S-INV102200",
+            "dueDate": "2025-02-02",
+            "currency": "",
+            "receiversName": "Adatum Corporation",
+            "customerEmail": "robert.townes@contoso.com",
+            "invoiceItems": [
+                {
+                    "itemName": "SYDNEY Swivel Chair, green",
+                    "quantity": "2",
+                    "rate": "190.10",
+                    "tax": "5.99947"
+                },
+                {
+                    "itemName": "ATLANTA Whiteboard, base",
+                    "quantity": "5",
+                    "rate": "1397.30",
+                    "tax": "6"
+                }
+            ]
+        }
+    ],
+    "companyName": "CRONUS International Ltd."
+}
