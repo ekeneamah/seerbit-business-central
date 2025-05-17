@@ -11,7 +11,7 @@ pageextension 71855593
             field("SBP Customer Email"; Rec."SBP Bill-to E-Mail")
             {
                 Caption = 'Customer Email';
-                ToolTip = 'Email of the CUstomer you sent the invoice to';
+                ToolTip = 'Email of the Customer you sent the invoice to';
                 ApplicationArea = ALL;
             }
         }

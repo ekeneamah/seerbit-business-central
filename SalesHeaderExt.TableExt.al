@@ -96,6 +96,12 @@ tableextension 71855614
             Caption = 'SeerBit - Payment Method';
             InitValue = 'NA';
         }
+         field(71855627; "SBP SeerBit - Date Sent"; Text[23])
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Date Sent to SeerBit';
+            InitValue = 'NA';
+        }
 
     }
 

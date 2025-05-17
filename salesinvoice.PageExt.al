@@ -70,6 +70,21 @@ pageextension 71855617
                     ApplicationArea = All;
                     Editable = false;
                 }
+                field("SBP Invoice Batch ID"; Rec."SBP SeerBit - Batch ID")
+                {
+                    Caption = 'Invoice Batch ID';
+                    ToolTip = 'Batch ID of invoice sent in a batch';
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+
+                 field("SBP Invoice Number"; Rec."SBP SeerBit - Invoice Number")
+                {
+                    Caption = 'Invoice Number';
+                    ToolTip = 'Batch ID of invoice sent in a batch';
+                    ApplicationArea = All;
+                    Editable = false;
+                }
             }
         }
 

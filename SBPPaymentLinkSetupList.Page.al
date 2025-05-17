@@ -13,7 +13,7 @@ page 71855584
     CardPageId = "SBP PG Payment Link";
     DataCaptionFields = RecId, CustomizationName, CustomerName;
     Permissions =
-        tabledata "SBPPayment Link" = R;
+        tabledata "SBPPayment Link" = RIMD;
 
 
     layout

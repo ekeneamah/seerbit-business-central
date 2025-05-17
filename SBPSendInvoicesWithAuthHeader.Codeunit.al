@@ -129,8 +129,7 @@ codeunit 71855610 SBPSendInvoicesWithAuthHeader
 
         if not Response.IsSuccessStatusCode() then
             Error(StrSubstNo('Failed to send invoices. Response: %1', ResponseText));
-
-        Message('Invoices sent successfully. Server response: %1', ResponseText);
+            if Response.IsSuccessStatusCode() then Message('Invoices sent successfully. Server response: %1', ResponseText)
     end;
 
     procedure GetLastErrorText(): Text

@@ -3,12 +3,15 @@ codeunit 71855609 SBPMultiSalesInvoice
     Permissions =
         tabledata "Company Information" = R,
         tabledata "Sales Header" = R,
-        tabledata "Sales Line" = R;
+        tabledata "Sales Line" = R,
+        tabledata "SBP SeerBit Invoices" = RIMD;
 
     var
         seerbitsalesinvoice: Record "SBP SeerBit Invoices";
+        InvoiceToUpdate: Record "Sales Header";
         responseCodeToken: JsonToken;
         responseBatchIdToken: JsonToken;
+        responseCodeText: Text;
         BatchId: Text;
         LastErrorText: Text;
         HttpClient: HttpClient;
@@ -31,10 +34,13 @@ codeunit 71855609 SBPMultiSalesInvoice
         getResponse: HttpResponseMessage;
         contentHeaders: HttpHeaders;
         jsonToken: JsonToken;
+        TokenJsonToken: JsonToken;
+
         DataObj: JsonObject;
         url: Text;
         JsonObj: JsonObject;
 
+    [TryFunction]
     procedure SendSelectedInvoices(var SelectedInvoices: Record "Sales Header")
     var
         PublicKeySegment: Text;
@@ -71,6 +77,7 @@ codeunit 71855609 SBPMultiSalesInvoice
         DataObj.ReadFrom(Format(jsonToken));
         DataObj.Get('encryptedKey', jsonToken);
         BearerToken := Format(jsonToken);
+        TokenJsonToken.ReadFrom(BearerToken);
 
         // Step 2: Build the invoice payload (invoices array only)
         Clear(InvoicesArray);
@@ -83,7 +90,7 @@ codeunit 71855609 SBPMultiSalesInvoice
                 InvoiceJson.Add('orderNo', SelectedInvoices."No.");
                 InvoiceJson.Add('dueDate', Format(SelectedInvoices."Due Date", 10, 9));
                 if SelectedInvoices."Currency Code" = '' then
-                    InvoiceJson.Add('currency', 'NGN')
+                    InvoiceJson.Add('currency', CompanyInfo."SBP Default Currency")
                 else
                     InvoiceJson.Add('currency', SelectedInvoices."Currency Code");
                 InvoiceJson.Add('receiversName', SelectedInvoices."Sell-to Customer Name");
@@ -110,7 +117,7 @@ codeunit 71855609 SBPMultiSalesInvoice
         // Step 3: Build root object with publicKey, token, and invoices[]
         Clear(RootJson);
         RootJson.Add('publicKey', CompanyInfo.SBPPublicKey);
-        RootJson.Add('token', BearerToken);
+        RootJson.Add('token', TokenJsonToken);
         RootJson.Add('invoices', InvoicesArray);
 
         RootJson.WriteTo(Payload);
@@ -142,31 +149,55 @@ codeunit 71855609 SBPMultiSalesInvoice
         if not JsonObj.ReadFrom(ResponseText) then
             Error('Unable to parse API response.');
 
-        if JsonObj.Get('code', responseCodeToken) and (Format(responseCodeToken).Replace('"', '') = '00') then begin
-            if JsonObj.Get('data', jsonToken) then begin
-                DataObj.ReadFrom(Format(jsonToken));
-                if DataObj.Get('batchId', responseBatchIdToken) then begin
-                    BatchId := Format(responseBatchIdToken).Replace('"', '');
+        begin
+            if JsonObj.Get('code', responseCodeToken) then begin
+                responseCodeText := responseCodeToken.AsValue().AsText();
+                Message('Response: %1', responseCodeText);
+                if responseCodeText = '00' then begin
+                    if JsonObj.Get('data', jsonToken) then begin
+                        DataObj := jsonToken.AsObject();
+                        if DataObj.Get('batchId', responseBatchIdToken) then begin
+                            BatchId := responseBatchIdToken.AsValue().AsText();
+                            Message('Batch ID: %1', BatchId);
+                           Message('Document Type: %1, Invoice No.: %2', SelectedInvoices."Document Type", SelectedInvoices."No.");
 
-                    if SelectedInvoices.FindSet() then begin
-                        repeat
-                            SelectedInvoices."SBP sent to seerbit" := true;
-                            SelectedInvoices."SBP SeerBit - Batch ID" := BatchId;
-                            SelectedInvoices."Payment Method Code" := 'SEERBIT';
-                            SelectedInvoices.Modify();
+                            // Update the selected invoices in the database
+                            if SelectedInvoices.FindSet() then begin
+                                repeat
+                                    if InvoiceToUpdate.Get(SelectedInvoices."Document Type", SelectedInvoices."No.") then begin
+                                        InvoiceToUpdate.Get(SelectedInvoices."Document Type", SelectedInvoices."No.");
+                                        InvoiceToUpdate."SBP sent to seerbit" := true;
+                                        InvoiceToUpdate."SBP SeerBit - Batch ID" := BatchId;
+                                        InvoiceToUpdate."SBP SeerBit - Invoice Number" := SelectedInvoices."No.";
+                                        InvoiceToUpdate."SBP SeerBit - Status" := 'Pending';
+                                        InvoiceToUpdate."Payment Method Code" := 'SEERBIT';
+                                        InvoiceToUpdate."SBP SeerBit - Date Sent" := Format(CurrentDateTime, 0, '<Day,2>/<Month,2>/<Year4> <Hours24,2>:<Minutes,2>:<Seconds,2>');
+                                        InvoiceToUpdate."SBP SeerBit - Payment Date" := Format(0D);
 
-                            Clear(SeerBitSalesInvoice);
-                            SeerBitSalesInvoice.Init();
-                            SeerBitSalesInvoice."Document Type" := SelectedInvoices."Document Type";
-                            SeerBitSalesInvoice."No." := SelectedInvoices."No.";
-                            SeerBitSalesInvoice."sent to seerbit" := true;
-                            SeerBitSalesInvoice."SeerBit - Batch ID" := BatchId;
-                            SeerBitSalesInvoice.Invoiceno := SelectedInvoices."No.";
-                            SeerBitSalesInvoice.Insert();
-                        until SelectedInvoices.Next() = 0;
+                                        InvoiceToUpdate.Modify();
+                                    end else begin
+                                        Error('Record not found.');
+                                    end;
+                                    Message('Invoice %1 updated with Batch ID %2', SelectedInvoices."No.", BatchId);
+                                    if SelectedInvoices."No." <> '' then begin
+                                        if not SeerBitSalesInvoice.Get(SelectedInvoices."No.") then begin
+                                            SeerBitSalesInvoice.Init();
+                                            SeerBitSalesInvoice."Document Type" := SelectedInvoices."Document Type";
+                                            SeerBitSalesInvoice."SeerBit - Invoice Number" := SelectedInvoices."No.";
+                                            SeerBitSalesInvoice."sent to seerbit" := true;
+                                            SeerBitSalesInvoice."SeerBit - Batch ID" := BatchId;
+                                            SeerBitSalesInvoice.Invoiceno := SelectedInvoices."No.";
+                                            SeerBitSalesInvoice.Insert();
+                                        end else
+                                            Message('Invoice %1 already exists in SeerBit Sales Invoices.', SelectedInvoices."No.");
+                                    end else
+                                        Error('Invoice number is missing for invoice %1.', SelectedInvoices."No.");
+                                until SelectedInvoices.Next() = 0;
+                            end;
+
+                            Message('Invoices submitted to SeerBit successfully. Batch ID: %1', BatchId);
+                        end;
                     end;
-
-                    Message('Invoices submitted to SeerBit successfully. Batch ID: %1', BatchId);
                 end;
             end;
         end;

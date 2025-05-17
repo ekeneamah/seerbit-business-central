@@ -1118,7 +1118,7 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit SBPAPI Integration - Method SendToAPI</note>
         </trans-unit>
-        <trans-unit id="Codeunit 43594763 - Method 3397707931" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 43594763 - Method 3414191641" size-unit="char" translate="yes" xml:space="preserve">
           <source>SendSelectedInvoices</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit SBPMultiSalesInvoice - Method SendSelectedInvoices</note>
@@ -1167,6 +1167,236 @@
           <source>update</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit SBPSendPostedSalesInvoice - Method update</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>SBP Fact Box Sales Invoice</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Property EntityCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Property 3863440606" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Property AdditionalSearchTerms</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Property 631549417" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Property EntitySetCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 544506448 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SeerBit Details - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 544506448 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SeerBit Details - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 544506448 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SeerBit Details - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 544506448 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>SeerBit Details</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SeerBit Details - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3855271124 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control Payment Method Code - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3855271124 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment Method Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control Payment Method Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3855271124 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control Payment Method Code - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3855271124 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control Payment Method Code - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3855271124 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment Method Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control Payment Method Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3057048261 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Batch ID - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3057048261 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Batch ID of invoice sent to customer by SeerBit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Batch ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3057048261 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Batch ID - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3057048261 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Batch ID - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3057048261 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Batch ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Batch ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3837607902 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Date Sent - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3837607902 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Sent to SeerBit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Date Sent - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3837607902 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Date Sent - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3837607902 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Date Sent - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 3837607902 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Sent to SeerBit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Date Sent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 1882469676 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Invoice Number - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 1882469676 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice number of invoice sent to customer by SeerBit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Invoice Number - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 1882469676 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Invoice Number - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 1882469676 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Invoice Number - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 1882469676 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoice Number</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Invoice Number - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 2054585944 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Payment Date - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 2054585944 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Payment Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 2054585944 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Payment Date - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 2054585944 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Payment Date - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 2054585944 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Payment Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 1955695738 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Status - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 1955695738 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status of invoice sent to customer by SeerBit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Status - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 1955695738 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Status - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 1955695738 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Status - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 1955695738 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP SeerBit - Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 2077649148 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP sent to seerbit - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 2077649148 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoices sent to customer through seerbit payment gateway</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP sent to seerbit - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 2077649148 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP sent to seerbit - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 2077649148 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP sent to seerbit - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 1603641959 - Control 2077649148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sent to SeerBit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP Fact Box Sales Invoice - Control SBP sent to seerbit - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3341286907 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source></source>
@@ -9818,6 +10048,31 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP SBPSeerBit Details - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 3938777716 - Control 1348951603 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice Batch ID - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3938777716 - Control 1348951603 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source>Batch ID of invoice sent in a batch</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice Batch ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3938777716 - Control 1348951603 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice Batch ID - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3938777716 - Control 1348951603 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice Batch ID - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3938777716 - Control 1348951603 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source>Invoice Batch ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice Batch ID - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 3938777716 - Control 618746455 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
           <source></source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -9842,6 +10097,31 @@
           <source>Invoice ID</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3938777716 - Control 375692957 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice Number - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3938777716 - Control 375692957 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source>Batch ID of invoice sent in a batch</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice Number - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3938777716 - Control 375692957 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice Number - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3938777716 - Control 375692957 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice Number - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3938777716 - Control 375692957 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
+          <source>Invoice Number</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Control SBP Invoice Number - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3938777716 - Control 1620483368 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
           <source></source>
@@ -11569,7 +11849,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPPostedsalesinvoicesExt - Control SBP Customer Email - Property AboutTitle</note>
         </trans-unit>
         <trans-unit id="PageExtension 4176860565 - Control 1229603979 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3434938165">
-          <source>Email of the CUstomer you sent the invoice to</source>
+          <source>Email of the Customer you sent the invoice to</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPPostedsalesinvoicesExt - Control SBP Customer Email - Property ToolTip</note>
         </trans-unit>
@@ -12048,6 +12328,121 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Action SBPMultiSalesInvoiceCodeunit - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 3057048261 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Batch ID - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 3057048261 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source>Batch ID of invoice sent to customer by SeerBit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Batch ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 3057048261 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Batch ID - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 3057048261 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Batch ID - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 3057048261 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source>Batch ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Batch ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 1882469676 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Invoice Number - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 1882469676 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source>Invoice number of invoice sent to customer by SeerBit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Invoice Number - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 1882469676 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Invoice Number - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 1882469676 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Invoice Number - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 1882469676 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source>Invoice Number</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Invoice Number - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 1955695738 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Status - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 1955695738 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source>Status of invoice sent to customer by SeerBit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Status - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 1955695738 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Status - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 1955695738 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Status - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 1955695738 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source>Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP SeerBit - Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 2077649148 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP sent to seerbit - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 2077649148 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source>Invoices sent to customer through seerbit payment gateway</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP sent to seerbit - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 2077649148 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP sent to seerbit - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 2077649148 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP sent to seerbit - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 2077649148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source>sent to seerbit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP sent to seerbit - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 2600823623 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP Sales Invoice FactBox - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 2600823623 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP Sales Invoice FactBox - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1556275333 - Control 2600823623 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 561208485">
+          <source>SeerBit Details</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBPSalesInvoiceListExt - Control SBP Sales Invoice FactBox - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 4066426561 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3540437152">
           <source></source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -12512,6 +12907,16 @@
           <source>SeerBit - Batch ID</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension SBP Sales Header Ext - Field SBP SeerBit - Batch ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3512006713 - Field 3837607902 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1192395785">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension SBP Sales Header Ext - Field SBP SeerBit - Date Sent - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3512006713 - Field 3837607902 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1192395785">
+          <source>Date Sent to SeerBit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension SBP Sales Header Ext - Field SBP SeerBit - Date Sent - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 3512006713 - Field 504421530 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1192395785">
           <source></source>
