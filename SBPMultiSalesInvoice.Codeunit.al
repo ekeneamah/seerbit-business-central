@@ -141,6 +141,7 @@ codeunit 71855609 SBPMultiSalesInvoice
 
         HttpClient.Send(Request, Response);
         Response.Content().ReadAs(ResponseText);
+        Message('Response: %1', ResponseText);
 
         if not Response.IsSuccessStatusCode() then
             Error(StrSubstNo('Failed to send invoices. Response: %1', ResponseText));
@@ -159,7 +160,7 @@ codeunit 71855609 SBPMultiSalesInvoice
                         if DataObj.Get('batchId', responseBatchIdToken) then begin
                             BatchId := responseBatchIdToken.AsValue().AsText();
                             Message('Batch ID: %1', BatchId);
-                           Message('Document Type: %1, Invoice No.: %2', SelectedInvoices."Document Type", SelectedInvoices."No.");
+                            Message('Document Type: %1, Invoice No.: %2', SelectedInvoices."Document Type", SelectedInvoices."No.");
 
                             // Update the selected invoices in the database
                             if SelectedInvoices.FindSet() then begin
@@ -180,14 +181,14 @@ codeunit 71855609 SBPMultiSalesInvoice
                                     end;
                                     Message('Invoice %1 updated with Batch ID %2', SelectedInvoices."No.", BatchId);
                                     if SelectedInvoices."No." <> '' then begin
-                                        if not SeerBitSalesInvoice.Get(SelectedInvoices."No.") then begin
-                                            SeerBitSalesInvoice.Init();
-                                            SeerBitSalesInvoice."Document Type" := SelectedInvoices."Document Type";
-                                            SeerBitSalesInvoice."SeerBit - Invoice Number" := SelectedInvoices."No.";
-                                            SeerBitSalesInvoice."sent to seerbit" := true;
-                                            SeerBitSalesInvoice."SeerBit - Batch ID" := BatchId;
-                                            SeerBitSalesInvoice.Invoiceno := SelectedInvoices."No.";
-                                            SeerBitSalesInvoice.Insert();
+                                        if not seerbitsalesinvoice.Get(SelectedInvoices."No.") then begin
+                                            seerbitsalesinvoice.Init();
+                                            seerbitsalesinvoice."Document Type" := SelectedInvoices."Document Type";
+                                            seerbitsalesinvoice."SeerBit - Invoice Number" := SelectedInvoices."No.";
+                                            seerbitsalesinvoice."sent to seerbit" := true;
+                                            seerbitsalesinvoice."SeerBit - Batch ID" := BatchId;
+                                            seerbitsalesinvoice.Invoiceno := SelectedInvoices."No.";
+                                            seerbitsalesinvoice.Insert();
                                         end else
                                             Message('Invoice %1 already exists in SeerBit Sales Invoices.', SelectedInvoices."No.");
                                     end else

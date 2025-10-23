@@ -1,4 +1,4 @@
-page 71855577 SBPConfirmMultiInvoiceSend
+page 71855579 SBPConfirmMultiInvoiceSend
 {
     PageType = List;
     SourceTable = "Sales Header";
@@ -35,7 +35,7 @@ page 71855577 SBPConfirmMultiInvoiceSend
             }
         }
     }
-     actions
+    actions
     {
         area(processing)
         {
@@ -69,9 +69,9 @@ page 71855577 SBPConfirmMultiInvoiceSend
     var
         CompanyName: Text[100];
         Email: Text[100];
-         ConfirmResult: Boolean;
+        ConfirmResult: Boolean;
 
-   trigger OnOpenPage()
+    trigger OnOpenPage()
     var
         CustomerRec: Record Customer;
     begin

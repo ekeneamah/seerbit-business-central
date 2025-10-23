@@ -23,23 +23,23 @@ table 71855608
         field(71855603; LocationName; Text[30])
         {
             DataClassification = CustomerContent;
-            TableRelation = "SBP Pos location table".Description;
+            // Remove table relation - will be populated from page lookup
         }
         field(71855604; "User ID"; Text[100])
         {
             DataClassification = CustomerContent;
-            TableRelation = User."Authentication Email";
+            // Remove table relation - will be handled in page lookup
         }
 
         field(71855611; "Full Name"; Text[100])
         {
             DataClassification = CustomerContent;
-            TableRelation = User."Full Name";
+            // Remove table relation - will be populated from page lookup
         }
         field(71855605; "Email"; Text[100])
         {
             DataClassification = CustomerContent;
-            TableRelation = User."Authentication Email";
+            // Remove table relation - will be populated from page lookup
         }
 
 
@@ -61,12 +61,16 @@ table 71855608
 
     trigger OnInsert()
     begin
-
+        // Allow partial insert - validation will happen when user completes the record
     end;
 
     trigger OnModify()
     begin
-
+        // Only validate if both fields have values (user is completing the record)
+        if ("User ID" <> '') and (LocationId = '') then
+            Error('Location must be selected when User ID is specified.');
+        if (LocationId <> '') and ("User ID" = '') then
+            Error('User ID must be selected when Location is specified.');
     end;
 
     trigger OnDelete()
@@ -77,6 +81,14 @@ table 71855608
     trigger OnRename()
     begin
 
+    end;
+
+    procedure ValidateRecord()
+    begin
+        if "User ID" = '' then
+            Error('User ID is required.');
+        if LocationId = '' then
+            Error('Location is required.');
     end;
 
 }

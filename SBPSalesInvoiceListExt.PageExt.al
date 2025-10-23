@@ -5,34 +5,34 @@ pageextension 71855576 SBPSalesInvoiceListExt extends "Sales Invoice List"
     {
         addafter("Sell-to Customer No.")
         {
-         
-           
-                field("SBP sent to seerbit"; Rec."SBP sent to seerbit")
-                {
-                    ApplicationArea = All;
-                    Caption='sent to seerbit';
-                    ToolTip = 'Invoices sent to customer through seerbit payment gateway';
-                }
-                field("SBP SeerBit - Batch ID"; Rec."SBP SeerBit - Batch ID")
-                {
-                    ApplicationArea = All;
-                    Caption='Batch ID';
-                    ToolTip = 'Batch ID of invoice sent to customer by SeerBit';
-                }
-                field("SBP SeerBit - Invoice Number"; Rec."SBP SeerBit - Invoice Number")
-                {
-                    ApplicationArea = All;
-                    Caption='Invoice Number';
-                    ToolTip = 'Invoice number of invoice sent to customer by SeerBit';
-                }
-                field("SBP SeerBit - Status"; Rec."SBP SeerBit - Status")
-                {
-                    ApplicationArea = All;
-                    Caption='Status';
-                    ToolTip = 'Status of invoice sent to customer by SeerBit';
-                }
 
-            
+
+            field("SBP sent to seerbit"; Rec."SBP sent to seerbit")
+            {
+                ApplicationArea = All;
+                Caption = 'Sent to SeerBit';
+                ToolTip = 'Invoices sent to customer through SeerBit payment gateway';
+            }
+            field("SBP SeerBit - Batch ID"; Rec."SBP SeerBit - Batch ID")
+            {
+                ApplicationArea = All;
+                Caption = 'Batch ID';
+                ToolTip = 'Batch ID of invoice sent to customer by SeerBit';
+            }
+            field("SBP SeerBit - Invoice Number"; Rec."SBP SeerBit - Invoice Number")
+            {
+                ApplicationArea = All;
+                Caption = 'Invoice Number';
+                ToolTip = 'Invoice number of invoice sent to customer by SeerBit';
+            }
+            field("SBP SeerBit - Status"; Rec."SBP SeerBit - Status")
+            {
+                ApplicationArea = All;
+                Caption = 'Status';
+                ToolTip = 'Status of invoice sent to customer by SeerBit';
+            }
+
+
         }
         addlast(factboxes)
         {
@@ -45,8 +45,8 @@ pageextension 71855576 SBPSalesInvoiceListExt extends "Sales Invoice List"
                               "No." = FIELD("No.");
                 Caption = 'SeerBit Details';
                 Visible = true;
-                
-          
+
+
             }
         }
     }
@@ -60,11 +60,12 @@ pageextension 71855576 SBPSalesInvoiceListExt extends "Sales Invoice List"
 
             action(SBPMultiSalesInvoiceCodeunit)
             {
-                ApplicationArea = All;
+                ApplicationArea = All, Basic, Suite;
                 Caption = 'Send to Payment Gateway';
                 Image = SendConfirmation;
                 Enabled = IsSelectionMade;
                 ToolTip = 'Send selected invoices to SeerBit Gateway';
+                Visible = true;
 
 
                 trigger OnAction()

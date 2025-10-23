@@ -1,7 +1,7 @@
 /// <summary>
-/// Codeunit SBPRetrievePaymentlinkPayments (ID 50124).
+/// Codeunit SBPRetrievePaymentlinkPayments (ID 71855578).
 /// </summary>
-codeunit 71855577 SBPRetrievePaymentlinkPayments
+codeunit 71855578 SBPRetrievePaymentlinkPayments
 {
     /// <summary>
     /// Retrieve payments.

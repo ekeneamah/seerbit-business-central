@@ -1,7 +1,7 @@
 /// <summary>
-/// Codeunit SBP Open SeerBit signup (ID 50134).
+/// Codeunit SBP Open SeerBit signup (ID 71855580).
 /// </summary>
-codeunit 71855578 "SBP Open SeerBit signup"
+codeunit 71855580 "SBP Open SeerBit signup"
 {
     trigger OnRun()
     var

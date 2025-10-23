@@ -471,18 +471,19 @@ pageextension 71855594
 
                 Payload := '{';
                 Payload += '"token": ' + EncryptedKey + ',';
-                payload += '"id" : "id",';
+                Payload += '"pubkey" : "' + Orgprofile.SBPPublicKey + '",';
+                payload += '"id" :  "' + Rec."No." + '",';
                 Payload += '"posid": "' + Rec."SBP SeerBit POS ID" + '",';
                 Payload += '"status": "' + transactionSatus + '",';
-                Payload += '"merchatTerminalId": "' + Userrecord."User Name" + '",';
+                Payload += '"merchantid": "' + Userrecord."User Name" + '",';
                 Payload += '"transactionId": "' + Rec."No." + '",';
                 payload += '"senTime": "' + Format(CurrentDateTime) + '",';
                 payload += '"receivDateTime":"receivDateTime",';
                 payload += '"transactionValue": "' + Format(TotalAmt).Replace(',', '') + '",';
-                Payload += '"erpTransactionRef":"' + SalesOrderNo + '"';
+                Payload += '"transactionRef":"' + SalesOrderNo + '"';
                 Payload += '}';
                 content.WriteFrom(Payload);
-                // Message(Payload);
+                Message(Payload);
                 // Retrieve the contentHeaders associated with the content
                 content.GetHeaders(contentHeaders);
                 contentHeaders.Clear();

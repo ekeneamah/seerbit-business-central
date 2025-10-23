@@ -1,7 +1,7 @@
 /// <summary>
 /// Codeunit SBPSendPostedSalesInvoice (ID 50133).
 /// </summary>
-codeunit 71855576 SBPSendPostedSalesInvoice
+codeunit 71855577 SBPSendPostedSalesInvoice
 {
     Permissions =
         tabledata "Company Information" = R,
