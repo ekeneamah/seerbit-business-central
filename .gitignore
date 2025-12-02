@@ -3,7 +3,7 @@
 # Business Central app source files
 .alpackages/
 .altestrunner
-.vscode
+#.vscode
 .app/
 .app-source/
 .symbols/
