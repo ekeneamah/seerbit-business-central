@@ -685,18 +685,18 @@ page 71855599
                                     //  Message('Payment 1 ' + Format(paymentsRecord.Id));
                                     // paymentsRecord.SetFilter(Id, Format(paymentsRecord.Id));
                                     paymentsRecord.Id := paymentsRecord.Id + 1;
-                                    
-                                    if not PaymentsJsonObject.get('status', statusToken) then begin 
-                                        Message('Invalid response from server - status not found'); 
-                                        exit; 
+
+                                    if not PaymentsJsonObject.get('status', statusToken) then begin
+                                        Message('Invalid response from server - status not found');
+                                        exit;
                                     end;
-                                    
+
                                     // Convert status (PUSHED becomes SUCCESS)
-                                    if Format(statusToken).REPLACE('"', '') = 'PUSHED' then 
-                                        StatusMsg := 'SUCCESS' 
-                                    else 
+                                    if Format(statusToken).REPLACE('"', '') = 'PUSHED' then
+                                        StatusMsg := 'SUCCESS'
+                                    else
                                         StatusMsg := Format(statusToken).REPLACE('"', '');
-                                    
+
                                     if (PaymentsJsonObject.get('customerName', fullNameToken)) then paymentsRecord."Full Name" := Format(fullNameToken).REPLACE('"', '');
                                     if (PaymentsJsonObject.get('paymentLinkId', paymentLinkIdToken)) then paymentsRecord.paymentLinkId := Format(paymentLinkIdToken).REPLACE('"', '');
                                     if (PaymentsJsonObject.get('paymentReference', paymentReferenceToken)) then paymentsRecord.paymentReference := Format(paymentReferenceToken).REPLACE('"', '');
@@ -722,7 +722,7 @@ page 71855599
                                     //paymentsRecord.SystemId := FORMAT(paymentReferenceToken);
                                     paymentsRecord.Insert(false);//then Status := 'success';
                                     InsertResponseText := 'New payment saved';
-                                    
+
                                     if (Rec.PaymentReference <> '') then begin
                                         // Validate Bank/Cash Account exists
                                         glaccount.SetFilter("No.", Rec.PaymentReference);
