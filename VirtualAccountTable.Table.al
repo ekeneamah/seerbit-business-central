@@ -122,6 +122,12 @@ table 71855611
         {
             DataClassification = CustomerContent;
         }
+        field(36; "Bal. Account No."; Code[20])
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Bal. Account No.';
+            TableRelation = "G/L Account" where("Account Type" = const(Posting));
+        }
     }
 
     keys
