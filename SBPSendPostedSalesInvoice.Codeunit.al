@@ -88,7 +88,7 @@ codeunit 71855577 SBPSendPostedSalesInvoice
 
         // Read the response content as json.
         response.Content().ReadAs(responseText);
-       // Message('Get response ' + responseText);
+        // Message('Get response ' + responseText);
         chk := jsonObj.ReadFrom(responseText);
         IF not jsonObj.Get('data', jsonToken) then
             Error('Invalid response from server');
@@ -99,7 +99,7 @@ codeunit 71855577 SBPSendPostedSalesInvoice
         jsonObj.ReadFrom(Format(jsonToken));
         jsonObj.Get('encryptedKey', jsonToken);
         EncryptedKey := Format(jsonToken);
-       // Message(EncryptedKey);
+        // Message(EncryptedKey);
         // Get the specific Posted Sales Invoice record
         Payload := '{';
         Payload += '"token": ' + EncryptedKey + ',';
