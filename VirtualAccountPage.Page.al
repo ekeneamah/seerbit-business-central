@@ -626,7 +626,10 @@ page 71855616
                                             genraljournalline."Line No." := 10000;
                                             genraljournalline."Posting Date" := Today;
                                             genraljournalline."Document Type" := "Gen. Journal Document Type"::Payment;
-                                            genraljournalline."Document No." := 'SB-VA-' + Format(paymentReferenceToken).REPLACE('"', '');
+                                            // Use unique payment record ID for document number (ensures uniqueness)
+                                            genraljournalline."Document No." := 'VA-' + Format(paymentsRecord.Id);
+                                            // Store full SeerBit payment reference in External Document No. (35 char limit) for querying/reconciliation
+                                            genraljournalline."External Document No." := CopyStr(Format(paymentReferenceToken).REPLACE('"', ''), 1, 35);
                                             genraljournalline."Account Type" := "Gen. Journal Account Type"::"G/L Account";
                                             genraljournalline."Account No." := Rec.PaymentReference;
                                             genraljournalline.Validate("Account No.");

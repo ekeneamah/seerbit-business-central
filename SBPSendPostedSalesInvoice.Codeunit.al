@@ -153,15 +153,24 @@ codeunit 71855577 SBPSendPostedSalesInvoice
         end else
 
             if actionType <> 'Create' then begin
-                // Invoice."SeerBit - Invoice Number" := 'SBT-INV-000392';
-                Payload += '"orderno": "' + Invoiceno + '",';
-                Payload += '"invoiceno": "' + SeerBitInvoiceNo + '",';
-                Payload += '"customerEmail": "' + salesHeader."Sell-to E-Mail" + '"';
+                // Load the sales header to get customer email
+                salesHeader.SETRANGE("No.", InvoiceNo);
+                IF salesHeader.FINDSET THEN BEGIN
+                    // Invoice."SeerBit - Invoice Number" := 'SBT-INV-000392';
+                    Payload += '"orderno": "' + Invoiceno + '",';
+                    Payload += '"invoiceno": "' + SeerBitInvoiceNo + '",';
+                    Payload += '"customerEmail": "' + salesHeader."Sell-to E-Mail" + '"';
+                END ELSE BEGIN
+                    // If sales header not found, send without email
+                    Payload += '"orderno": "' + Invoiceno + '",';
+                    Payload += '"invoiceno": "' + SeerBitInvoiceNo + '",';
+                    Payload += '"customerEmail": ""';
+                END;
             end;
         //JObjectRequest.WriteTo(PayloadJson);
         Payload += '}';
         content.WriteFrom(Payload);
-       // Message(Payload);
+        Message('Request Payload: ' + Payload);
         // Retrieve the contentHeaders associated with the content
         content.GetHeaders(contentHeaders);
         contentHeaders.Clear();
@@ -199,7 +208,7 @@ codeunit 71855577 SBPSendPostedSalesInvoice
 
         // Read the response content as json.
         response.Content().ReadAs(postresponseText);
-        Message(postresponseText);
+        Message('Response Payload: ' + postresponseText);
         jsonObj.ReadFrom(postresponseText);
         if jsonObj.get('status', responsestatusToken) then begin
             Message(Format(responsestatusToken).Replace('"', ''));

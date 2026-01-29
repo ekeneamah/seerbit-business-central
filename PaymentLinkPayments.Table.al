@@ -69,7 +69,7 @@ table 71855604
 
 
         }
-        field(9; "paymentLinkId"; Code[20])
+        field(9; "paymentLinkId"; Code[50])
         {
             DataClassification = CustomerContent;
 

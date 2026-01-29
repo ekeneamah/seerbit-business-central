@@ -69,7 +69,7 @@ table 71855611
             Caption = 'Email';
             NotBlank = true;
         }
-        field(9; accountNumber; code[20])
+        field(9; accountNumber; Code[40])
         {
             DataClassification = CustomerContent;
             Caption = 'Account Number';
