@@ -29,10 +29,9 @@ page 71855599
                     Caption = 'Gen. General Journal';
                     ToolTip = 'Please select the this payment will posted to';
                     Editable = false;
-
-
-
-
+                    Visible = false;
+                    ObsoleteState = Pending;
+                    ObsoleteReason = 'This field is no longer used and will be removed in a future version.';
                 }
                 field(PaymentReference; Rec.PaymentReference)
                 {
@@ -40,6 +39,8 @@ page 71855599
                     Caption = 'Bank/Cash Account';
                     ToolTip = 'Select the Bank or Cash account where customer payments will be deposited (Debit side)';
                     Editable = Rec."Total Payments" < 1;
+                    ShowMandatory = true;
+                    NotBlank = true;
 
                     trigger OnLookup(var Text: Text): Boolean
                     var
@@ -58,6 +59,8 @@ page 71855599
                     Caption = 'Revenue/Receivable Account';
                     ToolTip = 'Select the Revenue or Customer Receivable account to credit when payment is received';
                     Editable = Rec."Total Payments" < 1;
+                    ShowMandatory = true;
+                    NotBlank = true;
 
                     trigger OnLookup(var Text: Text): Boolean
                     var

@@ -151,6 +151,8 @@ table 71855618
         {
             DataClassification = CustomerContent;
             InitValue = 'SEERBIT';
+            ObsoleteState = Pending;
+            ObsoleteReason = 'This field is no longer used and will be removed in a future version.';
         }
         field(34; "Total Payments"; Integer)
         {

@@ -35,6 +35,8 @@ page 71855616
                     Caption = 'Bank/Cash Account';
                     ToolTip = 'Select the Bank or Cash account where customer payments will be deposited (Debit side)';
                     Editable = Rec."Total Payments" < 1;
+                    ShowMandatory = true;
+                    NotBlank = true;
 
                     trigger OnLookup(var Text: Text): Boolean
                     var
@@ -53,6 +55,8 @@ page 71855616
                     Caption = 'Revenue/Receivable Account';
                     ToolTip = 'Select the Revenue or Customer Receivable account to credit when payment is received';
                     Editable = Rec."Total Payments" < 1;
+                    ShowMandatory = true;
+                    NotBlank = true;
 
                     trigger OnLookup(var Text: Text): Boolean
                     var
