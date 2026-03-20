@@ -105,12 +105,12 @@ table 71855611
             Caption = 'Account No.';
             TableRelation =
                 if ("Account Type" = const("G/L Account")) "G/L Account" where("Account Type" = const(Posting))
-                else if ("Account Type" = const(Customer)) Customer
-                else if ("Account Type" = const(Vendor)) Vendor
-                else if ("Account Type" = const("Bank Account")) "Bank Account"
-                else if ("Account Type" = const("Fixed Asset")) "Fixed Asset"
-                else if ("Account Type" = const("IC Partner")) "IC Partner"
-                else if ("Account Type" = const(Employee)) Employee;
+            else if ("Account Type" = const(Customer)) Customer
+            else if ("Account Type" = const(Vendor)) Vendor
+            else if ("Account Type" = const("Bank Account")) "Bank Account"
+            else if ("Account Type" = const("Fixed Asset")) "Fixed Asset"
+            else if ("Account Type" = const("IC Partner")) "IC Partner"
+            else if ("Account Type" = const(Employee)) Employee;
             NotBlank = true;
         }
         field(102; "GL Account Name"; Text[120])
@@ -139,12 +139,12 @@ table 71855611
             Caption = 'Bal. Account No.';
             TableRelation =
                 if ("Bal. Account Type" = const("G/L Account")) "G/L Account" where("Account Type" = const(Posting))
-                else if ("Bal. Account Type" = const(Customer)) Customer
-                else if ("Bal. Account Type" = const(Vendor)) Vendor
-                else if ("Bal. Account Type" = const("Bank Account")) "Bank Account"
-                else if ("Bal. Account Type" = const("Fixed Asset")) "Fixed Asset"
-                else if ("Bal. Account Type" = const("IC Partner")) "IC Partner"
-                else if ("Bal. Account Type" = const(Employee)) Employee;
+            else if ("Bal. Account Type" = const(Customer)) Customer
+            else if ("Bal. Account Type" = const(Vendor)) Vendor
+            else if ("Bal. Account Type" = const("Bank Account")) "Bank Account"
+            else if ("Bal. Account Type" = const("Fixed Asset")) "Fixed Asset"
+            else if ("Bal. Account Type" = const("IC Partner")) "IC Partner"
+            else if ("Bal. Account Type" = const(Employee)) Employee;
         }
         field(37; "Account Type"; Enum "Gen. Journal Account Type")
         {
