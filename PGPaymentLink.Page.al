@@ -33,43 +33,77 @@ page 71855599
                     ObsoleteState = Pending;
                     ObsoleteReason = 'This field is no longer used and will be removed in a future version.';
                 }
+                field("Account Type"; Rec."Account Type")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Account Type';
+                    ToolTip = 'Select the debit account type to post payment receipts.';
+                    Editable = Rec."Total Payments" < 1;
+
+                    trigger OnValidate()
+                    begin
+                        if xRec."Account Type" <> Rec."Account Type" then
+                            Rec.PaymentReference := '';
+                    end;
+                }
                 field(PaymentReference; Rec.PaymentReference)
                 {
                     ApplicationArea = All;
-                    Caption = 'Bank/Cash Account';
-                    ToolTip = 'Select the Bank or Cash account where customer payments will be deposited (Debit side)';
+                    Caption = 'Account No.';
+                    ToolTip = 'Select the debit account number used to post incoming payments.';
                     Editable = Rec."Total Payments" < 1;
                     ShowMandatory = true;
                     NotBlank = true;
 
-                    trigger OnLookup(var Text: Text): Boolean
+                    trigger OnValidate()
                     var
-                        ItemRec: Record "G/L Account";
+                        SelectedAccountNo: Code[20];
                     begin
-                        ItemRec.Reset();
-                        if Page.RunModal(Page::"Chart of Accounts", ItemRec) = Action::LookupOK then
-                            Rec.PaymentReference := ItemRec."No."
+                        if Rec.PaymentReference = '' then
+                            exit;
 
+                        if StrLen(Rec.PaymentReference) > MaxStrLen(SelectedAccountNo) then
+                            Error('Account No. must be %1 characters or less.', MaxStrLen(SelectedAccountNo));
+
+                        SelectedAccountNo := CopyStr(Rec.PaymentReference, 1, MaxStrLen(SelectedAccountNo));
+                        Rec.PaymentReference := SelectedAccountNo;
                     end;
 
+                }
+                field("Bal. Account Type"; Rec."Bal. Account Type")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Bal. Account Type';
+                    ToolTip = 'Balancing account type is fixed to Customer.';
+                    Editable = false;
                 }
                 field("Bal. Account No."; Rec."Bal. Account No.")
                 {
                     ApplicationArea = All;
-                    Caption = 'Revenue/Receivable Account';
-                    ToolTip = 'Select the Revenue or Customer Receivable account to credit when payment is received';
+                    Caption = 'Bal. Account No.';
+                    ToolTip = 'Select the balancing account number (for example, a customer account).';
                     Editable = Rec."Total Payments" < 1;
                     ShowMandatory = true;
                     NotBlank = true;
 
-                    trigger OnLookup(var Text: Text): Boolean
+                    trigger OnValidate()
                     var
-                        ItemRec: Record "G/L Account";
+                        SelectedCustomer: Record Customer;
                     begin
-                        ItemRec.Reset();
-                        ItemRec.SetRange("Account Type", ItemRec."Account Type"::Posting);
-                        if Page.RunModal(Page::"Chart of Accounts", ItemRec) = Action::LookupOK then
-                            Rec."Bal. Account No." := ItemRec."No.";
+                        if Rec."Bal. Account No." = '' then begin
+                            Rec.CustomerName := '';
+                            exit;
+                        end;
+
+                        if Rec."Bal. Account Type" <> Rec."Bal. Account Type"::Customer then
+                            exit;
+
+                        if not SelectedCustomer.Get(Rec."Bal. Account No.") then
+                            Error('Customer account %1 was not found.', Rec."Bal. Account No.");
+
+                        Rec.CustomerName := SelectedCustomer.Name;
+                        if Rec.Email = '' then
+                            Rec.Email := SelectedCustomer."E-Mail";
                     end;
                 }
 
@@ -84,10 +118,13 @@ page 71855599
                         ItemRec: Record Customer;
                     begin
                         ItemRec.Reset();
-                        if Page.RunModal(Page::"Customer List", ItemRec) = Action::LookupOK then
+                        if Page.RunModal(Page::"Customer List", ItemRec) = Action::LookupOK then begin
                             Rec.Email := ItemRec."E-Mail";
-                        Rec.CustomerName := ItemRec.Name;
-                        Rec.Amount := ItemRec."Invoice Amounts"
+                            Rec.CustomerName := ItemRec.Name;
+                            Rec.Amount := ItemRec."Invoice Amounts";
+                            Rec."Bal. Account Type" := Rec."Bal. Account Type"::Customer;
+                            Rec.Validate("Bal. Account No.", ItemRec."No.");
+                        end;
                     end;
 
 
@@ -341,7 +378,7 @@ page 71855599
 
                 begin
                     actionType := 'Verify';
-                    if Dialog.Confirm('Retrieve payment for payment link ' + Format(Rec.Reference) + '. If you have set a Bank/Cash Account and Revenue/Receivable Account, payments will be posted directly to the General Ledger.', true, false) then
+                    if Dialog.Confirm('Retrieve payment for payment link ' + Format(Rec.Reference) + '. Payments will be posted using Account Type/No. and Bal. Account Type/No.', true, false) then
                         SendDataToAPI(rec.RecId);
                     //ObjectJSONManagement."Retrieve payments"(Rec.Reference)
 
@@ -487,7 +524,6 @@ page 71855599
         Index: Integer;
         paymentsRecord: Record "SBPPaymentPayments";
         genraljournalline: Record "Gen. Journal Line";
-        glaccount: Record "G/L Account";
         GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line";
         GeneralLedgerSetup: Record "General Ledger Setup";
         businessdetails: Record "Company Information";
@@ -498,6 +534,8 @@ page 71855599
         currencyToken: JsonToken;
         paymentDateToken: JsonToken;
         StatusMsg: Text;
+        PaymentAccountNo: Code[20];
+        BalancingAccountNo: Code[20];
 
     begin
         businessdetails.FindFirst();
@@ -726,64 +764,60 @@ page 71855599
                                     paymentsRecord.Insert(false);//then Status := 'success';
                                     InsertResponseText := 'New payment saved';
 
-                                    if (Rec.PaymentReference <> '') then begin
-                                        // Validate Bank/Cash Account exists
-                                        glaccount.SetFilter("No.", Rec.PaymentReference);
-                                        if not glaccount.FindFirst() then begin
-                                            Message('Bank/Cash Account ' + Rec.PaymentReference + ' not found');
-                                            exit;
-                                        end;
-
-                                        // Validate Revenue/Receivable Account is set (required for balanced posting)
-                                        if Rec."Bal. Account No." = '' then begin
-                                            Message('Please set a Revenue/Receivable Account before posting. This is required for balanced G/L entries.');
-                                            exit;
-                                        end;
-
-                                        // Get the LCY code to check if we should set currency
-                                        GeneralLedgerSetup.Get();
-
-                                        // Initialize the journal line for direct posting (no journal setup required)
-                                        genraljournalline.Init();
-                                        genraljournalline."Line No." := 10000;
-                                        genraljournalline."Posting Date" := Today;
-                                        genraljournalline."Document Type" := "Gen. Journal Document Type"::Payment;
-                                        // Use unique payment record ID for document number (ensures uniqueness)
-                                        genraljournalline."Document No." := 'PL-' + Format(paymentsRecord.Id);
-                                        // Store full SeerBit payment reference in External Document No. (35 char limit) for querying/reconciliation
-                                        genraljournalline."External Document No." := CopyStr(Format(paymentReferenceToken).REPLACE('"', ''), 1, 35);
-                                        genraljournalline."Account Type" := "Gen. Journal Account Type"::"G/L Account";
-                                        genraljournalline."Account No." := Rec.PaymentReference;
-                                        genraljournalline.Validate("Account No.");
-                                        genraljournalline.Description := 'SeerBit Payment Link - ' + Format(paymentReferenceToken).REPLACE('"', '');
-
-                                        // For local currency (NGN), do NOT set Currency Code - leave it blank
-                                        // Only set Currency Code if it's a foreign currency
-                                        if (Rec.Currency <> '') and (Rec.Currency <> GeneralLedgerSetup."LCY Code") and (Rec.Currency <> 'NGN') then
-                                            genraljournalline.Validate("Currency Code", Rec.Currency)
-                                        else
-                                            genraljournalline."Currency Code" := ''; // Ensure it's blank for LCY
-
-                                        genraljournalline."Gen. Posting Type" := glaccount."Gen. Posting Type";
-                                        genraljournalline."Gen. Bus. Posting Group" := glaccount."Gen. Bus. Posting Group";
-                                        genraljournalline."Gen. Prod. Posting Group" := glaccount."Gen. Prod. Posting Group";
-
-                                        // Set Amount directly without currency conversion for LCY
-                                        genraljournalline.Amount := payLinkAmountToken.AsValue().AsDecimal();
-                                        genraljournalline."Amount (LCY)" := payLinkAmountToken.AsValue().AsDecimal();
-
-                                        // Set the balancing account for proper double-entry posting
-                                        genraljournalline."Bal. Account Type" := "Gen. Journal Account Type"::"G/L Account";
-                                        genraljournalline."Bal. Account No." := Rec."Bal. Account No.";
-                                        genraljournalline.Validate("Bal. Account No.");
-
-                                        genraljournalline."SBPSeerBit - Tx. Refenece" := Format(paymentReferenceToken).REPLACE('"', '');
-                                        genraljournalline."SBPSeerBit -Doc. Type" := 'Payment Link';
-
-                                        // Post directly to the General Ledger (no journal setup required)
-                                        GenJnlPostLine.RunWithCheck(genraljournalline);
-                                        Message('Payment of ' + Format(payLinkAmountToken.AsValue().AsDecimal()) + ' posted to G/L Account ' + Rec.PaymentReference);
+                                    if (Rec.PaymentReference = '') or (Rec."Bal. Account No." = '') then begin
+                                        Message('Please set Account Type, Account No., and Bal. Account No. before posting.');
+                                        exit;
                                     end;
+
+                                    if StrLen(Rec.PaymentReference) > MaxStrLen(PaymentAccountNo) then begin
+                                        Message('Account No. must be %1 characters or less.', MaxStrLen(PaymentAccountNo));
+                                        exit;
+                                    end;
+                                    PaymentAccountNo := CopyStr(Rec.PaymentReference, 1, MaxStrLen(PaymentAccountNo));
+
+                                    if StrLen(Rec."Bal. Account No.") > MaxStrLen(BalancingAccountNo) then begin
+                                        Message('Bal. Account No. must be %1 characters or less.', MaxStrLen(BalancingAccountNo));
+                                        exit;
+                                    end;
+                                    BalancingAccountNo := CopyStr(Rec."Bal. Account No.", 1, MaxStrLen(BalancingAccountNo));
+
+                                    // Get the LCY code to check if we should set currency
+                                    GeneralLedgerSetup.Get();
+
+                                    // Initialize the journal line for direct posting (no journal setup required)
+                                    genraljournalline.Init();
+                                    genraljournalline."Line No." := 10000;
+                                    genraljournalline."Posting Date" := Today;
+                                    genraljournalline."Document Type" := "Gen. Journal Document Type"::Payment;
+                                    // Use unique payment record ID for document number (ensures uniqueness)
+                                    genraljournalline."Document No." := 'PL-' + Format(paymentsRecord.Id);
+                                    // Store full SeerBit payment reference in External Document No. (35 char limit) for querying/reconciliation
+                                    genraljournalline."External Document No." := CopyStr(Format(paymentReferenceToken).REPLACE('"', ''), 1, 35);
+                                    genraljournalline."Account Type" := Rec."Account Type";
+                                    genraljournalline.Validate("Account No.", PaymentAccountNo);
+                                    genraljournalline.Description := 'SeerBit Payment Link - ' + Format(paymentReferenceToken).REPLACE('"', '');
+
+                                    // For local currency (NGN), do NOT set Currency Code - leave it blank
+                                    // Only set Currency Code if it's a foreign currency
+                                    if (Rec.Currency <> '') and (Rec.Currency <> GeneralLedgerSetup."LCY Code") and (Rec.Currency <> 'NGN') then
+                                        genraljournalline.Validate("Currency Code", Rec.Currency)
+                                    else
+                                        genraljournalline."Currency Code" := ''; // Ensure it's blank for LCY
+
+                                    genraljournalline.Validate(Amount, payLinkAmountToken.AsValue().AsDecimal());
+                                    if genraljournalline."Currency Code" = '' then
+                                        genraljournalline."Amount (LCY)" := genraljournalline.Amount;
+
+                                    // Balancing side is fixed to Customer.
+                                    genraljournalline."Bal. Account Type" := "Gen. Journal Account Type"::Customer;
+                                    genraljournalline.Validate("Bal. Account No.", BalancingAccountNo);
+
+                                    genraljournalline."SBPSeerBit - Tx. Refenece" := Format(paymentReferenceToken).REPLACE('"', '');
+                                    genraljournalline."SBPSeerBit -Doc. Type" := 'Payment Link';
+
+                                    // Post directly to the General Ledger (no journal setup required)
+                                    GenJnlPostLine.RunWithCheck(genraljournalline);
+                                    Message('Payment of ' + Format(payLinkAmountToken.AsValue().AsDecimal()) + ' posted using ' + Format(Rec."Account Type") + ' ' + PaymentAccountNo + ' with balancing Customer ' + BalancingAccountNo + '.');
                                 end else begin
                                     paymentsRecord.FindLast();
                                     // Message('Payment count 5 ' + Format(paymentsRecord.Id));

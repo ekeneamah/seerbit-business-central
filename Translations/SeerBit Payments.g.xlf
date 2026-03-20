@@ -293,6 +293,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table SBPPayment Link - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2948567325 - Field 3699788827 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SBPPayment Link - Field Account Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2948567325 - Field 3699788827 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SBPPayment Link - Field Account Type - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2948567325 - Field 112776763 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source></source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -332,6 +342,16 @@
           <source>Bal. Account No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table SBPPayment Link - Field Bal. Account No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2948567325 - Field 824028820 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SBPPayment Link - Field Bal. Account Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2948567325 - Field 824028820 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bal. Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SBPPayment Link - Field Bal. Account Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2948567325 - Field 3561154705 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source></source>
@@ -489,7 +509,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table SBPPayment Link - Field PaymentReference - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 2948567325 - Field 1811986635 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>PaymentReference</source>
+          <source>Account No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table SBPPayment Link - Field PaymentReference - Property Caption</note>
         </trans-unit>
@@ -933,6 +953,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table SBPVirtualAccountTable - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3065901337 - Field 3699788827 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SBPVirtualAccountTable - Field Account Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3065901337 - Field 3699788827 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SBPVirtualAccountTable - Field Account Type - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3065901337 - Field 3033425374 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source></source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -952,6 +982,16 @@
           <source>Bal. Account No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table SBPVirtualAccountTable - Field Bal. Account No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3065901337 - Field 824028820 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SBPVirtualAccountTable - Field Bal. Account Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3065901337 - Field 824028820 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bal. Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table SBPVirtualAccountTable - Field Bal. Account Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3065901337 - Field 559537955 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source></source>
@@ -1069,7 +1109,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table SBPVirtualAccountTable - Field PaymentReference - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3065901337 - Field 1811986635 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>PaymentReference</source>
+          <source>Account No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table SBPVirtualAccountTable - Field PaymentReference - Property Caption</note>
         </trans-unit>
@@ -2693,6 +2733,36 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control General - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 974644024 - Control 3699788827 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Account Type - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 3699788827 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select the debit account type to post payment receipts.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Account Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 3699788827 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Account Type - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 3699788827 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Account Type - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 3699788827 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Account Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 3699788827 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Account Type - Property OptionCaption</note>
+        </trans-unit>
         <trans-unit id="Page 974644024 - Control 112776763 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source></source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2749,7 +2819,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account No. - Property AboutTitle</note>
         </trans-unit>
         <trans-unit id="Page 974644024 - Control 1891586249 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Select the Revenue or Customer Receivable account to credit when payment is received</source>
+          <source>Select the balancing account number (for example, a customer account).</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account No. - Property ToolTip</note>
         </trans-unit>
@@ -2764,9 +2834,39 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account No. - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 974644024 - Control 1891586249 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Revenue/Receivable Account</source>
+          <source>Bal. Account No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 824028820 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account Type - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 824028820 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select the balancing account type for the credit side of the entry.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 824028820 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account Type - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 824028820 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account Type - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 824028820 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bal. Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 974644024 - Control 824028820 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account Type - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Page 974644024 - Control 4198939294 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source></source>
@@ -3079,7 +3179,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control PaymentReference - Property AboutTitle</note>
         </trans-unit>
         <trans-unit id="Page 974644024 - Control 1811986635 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Select the Bank or Cash account where customer payments will be deposited (Debit side)</source>
+          <source>Select the debit account number used to post incoming payments.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control PaymentReference - Property ToolTip</note>
         </trans-unit>
@@ -3094,7 +3194,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control PaymentReference - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 974644024 - Control 1811986635 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bank/Cash Account</source>
+          <source>Account No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control PaymentReference - Property Caption</note>
         </trans-unit>
@@ -9648,13 +9748,43 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control walletName - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 3699788827 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Account Type - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 3699788827 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select the debit account type to post payment receipts.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Account Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 3699788827 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Account Type - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 3699788827 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Account Type - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 3699788827 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Account Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 3699788827 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Account Type - Property OptionCaption</note>
+        </trans-unit>
         <trans-unit id="Page 4246282446 - Control 1891586249 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source></source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account No. - Property AboutTitle</note>
         </trans-unit>
         <trans-unit id="Page 4246282446 - Control 1891586249 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Select the Revenue or Customer Receivable account to credit when payment is received</source>
+          <source>Select the balancing account number (for example, a customer account).</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account No. - Property ToolTip</note>
         </trans-unit>
@@ -9669,9 +9799,39 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account No. - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 4246282446 - Control 1891586249 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Revenue/Receivable Account</source>
+          <source>Bal. Account No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 824028820 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account Type - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 824028820 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select the balancing account type for the credit side of the entry.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 824028820 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account Type - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 824028820 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account Type - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 824028820 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bal. Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4246282446 - Control 824028820 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account Type - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Page 4246282446 - Control 1405272280 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source></source>
@@ -9804,7 +9964,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control PaymentReference - Property AboutTitle</note>
         </trans-unit>
         <trans-unit id="Page 4246282446 - Control 1811986635 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Select the Bank or Cash account where customer payments will be deposited (Debit side)</source>
+          <source>Select the debit account number used to post incoming payments.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control PaymentReference - Property ToolTip</note>
         </trans-unit>
@@ -9819,7 +9979,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control PaymentReference - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 4246282446 - Control 1811986635 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bank/Cash Account</source>
+          <source>Account No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control PaymentReference - Property Caption</note>
         </trans-unit>
