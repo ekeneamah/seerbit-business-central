@@ -1,0 +1,250 @@
+{
+  "info": {
+    "name": "SeerBit CAP Local",
+    "_postman_id": "e95022c8-d3ce-4e40-9df7-bf2bcf04fcff",
+    "description": "Developer test collection for SeerBit CAP actions (virtual account create/update/retrieve/post).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "2. List Configuration",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/Configuration",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "Configuration"]
+        }
+      }
+    },
+    {
+      "name": "3. Create Configuration",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"CompanyName\": \"Dev Test Tenant\",\n  \"PublicKey\": \"{{seerbitPublicKey}}\",\n  \"SecretKey\": \"{{seerbitSecretKey}}\",\n  \"Environment\": \"SANDBOX\",\n  \"S4CompanyCode\": \"{{companyCode}}\",\n  \"S4DocumentType\": \"{{documentType}}\",\n  \"S4SoapMode\": \"{{soapMode}}\",\n  \"S4SoapEndpointSync\": \"{{s4SoapEndpointSync}}\",\n  \"S4SoapEndpointAsync\": \"{{s4SoapEndpointAsync}}\",\n  \"S4SoapUser\": \"{{s4SoapUser}}\",\n  \"S4SoapPassword\": \"{{s4SoapPassword}}\",\n  \"S4SoapNamespace\": \"{{s4SoapNamespace}}\",\n  \"S4SoapActionSync\": \"{{s4SoapActionSync}}\",\n  \"S4SoapActionAsync\": \"{{s4SoapActionAsync}}\",\n  \"S4SoapTimeoutMs\": 30000,\n  \"IsActive\": true\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/Configuration",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "Configuration"]
+        },
+        "description": "Create config once, then copy the returned ID into configID environment variable."
+      }
+    },
+    {
+      "name": "4. Create VirtualAccounts Row",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"FullName\": \"SeerBit Test Customer\",\n  \"Email\": \"test.customer@example.com\",\n  \"BankVerificationNo\": \"\",\n  \"Currency\": \"NGN\",\n  \"Country\": \"NG\",\n  \"Reference\": \"VA-DEV-{{$timestamp}}\",\n  \"Status\": \"ACTIVE\",\n  \"PaymentAccountType\": \"BANK_ACCOUNT\",\n  \"PaymentAccountNo\": \"{{paymentAccountNo}}\",\n  \"PaymentAccountName\": \"{{paymentAccountName}}\",\n  \"BalancingAccountType\": \"CUSTOMER\",\n  \"BalancingAccountNo\": \"{{balancingAccountNo}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/VirtualAccounts",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "VirtualAccounts"]
+        },
+        "description": "Create local row first, then copy returned ID into virtualAccountID variable."
+      }
+    },
+    {
+      "name": "5. Action - createVirtualAccount",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"virtualAccountID\": \"{{virtualAccountID}}\",\n  \"configID\": \"{{configID}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/createVirtualAccount",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "createVirtualAccount"]
+        }
+      }
+    },
+    {
+      "name": "6. Action - updateVirtualAccount",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"virtualAccountID\": \"{{virtualAccountID}}\",\n  \"configID\": \"{{configID}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/updateVirtualAccount",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "updateVirtualAccount"]
+        }
+      }
+    },
+    {
+      "name": "7. Action - retrieveVirtualAccountPayments",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"virtualAccountID\": \"{{virtualAccountID}}\",\n  \"configID\": \"{{configID}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/retrieveVirtualAccountPayments",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "retrieveVirtualAccountPayments"]
+        }
+      }
+    },
+    {
+      "name": "8. Action - postPendingVirtualAccountPaymentsToS4",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"virtualAccountID\": \"{{virtualAccountID}}\",\n  \"configID\": \"{{configID}}\",\n  \"companyCode\": \"{{companyCode}}\",\n  \"documentType\": \"{{documentType}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/postPendingVirtualAccountPaymentsToS4",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "postPendingVirtualAccountPaymentsToS4"]
+        }
+      }
+    },
+    {
+      "name": "9. Action - retrieveAndPostVirtualAccountPayments",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"virtualAccountID\": \"{{virtualAccountID}}\",\n  \"configID\": \"{{configID}}\",\n  \"companyCode\": \"{{companyCode}}\",\n  \"documentType\": \"{{documentType}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/retrieveAndPostVirtualAccountPayments",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "retrieveAndPostVirtualAccountPayments"]
+        }
+      }
+    },
+    {
+      "name": "10. List VirtualAccounts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/VirtualAccounts",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "VirtualAccounts"]
+        }
+      }
+    },
+    {
+      "name": "11. List VirtualAccountPayments",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/VirtualAccountPayments",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "VirtualAccountPayments"]
+        }
+      }
+    },
+    {
+      "name": "12. Action - postVirtualAccountPaymentToS4 (single payment)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"paymentID\": \"{{paymentID}}\",\n  \"configID\": \"{{configID}}\",\n  \"companyCode\": \"{{companyCode}}\",\n  \"documentType\": \"{{documentType}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/seerbit/postVirtualAccountPaymentToS4",
+          "host": ["{{baseUrl}}"],
+          "path": ["seerbit", "postVirtualAccountPaymentToS4"]
+        },
+        "description": "Set paymentID from one row in VirtualAccountPayments before running."
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:4004" },
+    { "key": "configID", "value": "" },
+    { "key": "virtualAccountID", "value": "" },
+    { "key": "paymentID", "value": "" },
+    { "key": "companyCode", "value": "1000" },
+    { "key": "documentType", "value": "DZ" },
+    { "key": "soapMode", "value": "SYNC" },
+    { "key": "seerbitPublicKey", "value": "" },
+    { "key": "seerbitSecretKey", "value": "" },
+    { "key": "paymentAccountNo", "value": "100000" },
+    { "key": "paymentAccountName", "value": "Main Bank Account" },
+    { "key": "balancingAccountNo", "value": "CUST100" },
+    { "key": "s4SoapEndpointSync", "value": "" },
+    { "key": "s4SoapEndpointAsync", "value": "" },
+    { "key": "s4SoapUser", "value": "" },
+    { "key": "s4SoapPassword", "value": "" },
+    { "key": "s4SoapNamespace", "value": "http://sap.com/xi/SAPSCORE/SFIN" },
+    { "key": "s4SoapActionSync", "value": "http://sap.com/xi/SAPSCORE/SFIN/JournalEntryBulkCreateRequest_In" },
+    { "key": "s4SoapActionAsync", "value": "http://sap.com/xi/SAPSCORE/SFIN/JournalEntryBulkCreateRequest_Out" }
+  ]
+}

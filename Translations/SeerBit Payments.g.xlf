@@ -1119,7 +1119,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table SBPVirtualAccountTable - Field publicKey - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3065901337 - Field 4141799714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Public Key</source>
+          <source>SBT Payment Reference</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table SBPVirtualAccountTable - Field publicKey - Property Caption</note>
         </trans-unit>
@@ -2844,7 +2844,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account Type - Property AboutTitle</note>
         </trans-unit>
         <trans-unit id="Page 974644024 - Control 824028820 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Select the balancing account type for the credit side of the entry.</source>
+          <source>Balancing account type is fixed to Customer.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBP PG Payment Link - Control Bal. Account Type - Property ToolTip</note>
         </trans-unit>
@@ -9039,7 +9039,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountList - Control fullName - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3195785717 - Control 3814181848 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>fullName</source>
+          <source>Full Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountList - Control fullName - Property Caption</note>
         </trans-unit>
@@ -9089,7 +9089,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountList - Control publicKey - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3195785717 - Control 4141799714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>publicKey</source>
+          <source>Payment Reference</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountList - Control publicKey - Property Caption</note>
         </trans-unit>
@@ -9809,7 +9809,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account Type - Property AboutTitle</note>
         </trans-unit>
         <trans-unit id="Page 4246282446 - Control 824028820 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Select the balancing account type for the credit side of the entry.</source>
+          <source>Balancing account type is fixed to Customer.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SBPVirtualAccountPage - Control Bal. Account Type - Property ToolTip</note>
         </trans-unit>

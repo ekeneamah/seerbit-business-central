@@ -1,0 +1,46 @@
+{
+  "definitions": {
+    "API_JOURNAL_ENTRY_SRV": {
+      "kind": "service",
+      "@cds.external": true,
+      "@cds.persistence.skip": true
+    },
+    "A_JournalEntry": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "CompanyCode": { "type": "cds.String", "length": 4 },
+        "AccountingDocumentType": { "type": "cds.String", "length": 2 },
+        "DocumentDate": { "type": "cds.String", "length": 10 },
+        "PostingDate": { "type": "cds.String", "length": 10 },
+        "DocumentHeaderText": { "type": "cds.String", "length": 25 },
+        "Reference1InDocumentHeader": { "type": "cds.String", "length": 20 },
+        "to_JournalEntryItem": {
+          "type": "cds.Composition",
+          "target": "A_JournalEntryItem",
+          "cardinality": { "max": "*" }
+        }
+      }
+    },
+    "A_JournalEntryItem": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "CompanyCode": { "type": "cds.String", "length": 4 },
+        "GLAccount": { "type": "cds.String", "length": 10 },
+        "Customer": { "type": "cds.String", "length": 10 },
+        "DocumentItemText": { "type": "cds.String", "length": 50 },
+        "DebitCreditCode": { "type": "cds.String", "length": 1 },
+        "AmountInTransactionCurrency": { "type": "cds.Decimal", "precision": 23, "scale": 2 },
+        "TransactionCurrency": { "type": "cds.String", "length": 5 },
+        "AssignmentReference": { "type": "cds.String", "length": 18 }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS external service stub for API_JOURNAL_ENTRY_SRV",
+    "flavor": "csn"
+  }
+}

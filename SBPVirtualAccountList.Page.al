@@ -39,6 +39,7 @@ page 71855589 SBPVirtualAccountList
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Caption = 'Payment Reference';
                 }
 
                 field(accountNumber; Rec.accountNumber)
@@ -51,6 +52,7 @@ page 71855589 SBPVirtualAccountList
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Caption = 'Full Name';
                 }
 
                 field(currency; Rec."Currency")

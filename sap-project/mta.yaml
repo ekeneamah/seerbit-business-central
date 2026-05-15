@@ -1,0 +1,80 @@
+## MTA Deployment Descriptor
+## SeerBit Payments Integration for SAP S/4HANA
+## Deploy to SAP BTP Cloud Foundry with: mbt build && cf deploy mta_archives/*.mtar
+
+_schema-version: '3.1'
+ID: seerbit-s4hana-integration
+version: 1.0.0
+description: SeerBit Payments Integration for SAP S/4HANA
+
+parameters:
+  enable-parallel-deployments: true
+
+modules:
+  # ──────────────────────────────────────────
+  # CAP Node.js Application
+  # ──────────────────────────────────────────
+  - name: seerbit-s4hana-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      disk-quota: 256M
+      memory: 256M
+    properties:
+      NODE_ENV: production
+    build-parameters:
+      builder: npm
+      ignore:
+        - .env
+        - node_modules/
+    requires:
+      - name: seerbit-s4hana-db
+      - name: seerbit-s4hana-destination
+      - name: seerbit-s4hana-xsuaa
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+
+  # ──────────────────────────────────────────
+  # SAP HANA DB Deployer
+  # ──────────────────────────────────────────
+  - name: seerbit-s4hana-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: seerbit-s4hana-db
+
+resources:
+  # ──────────────────────────────────────────
+  # SAP HANA Cloud (database)
+  # ──────────────────────────────────────────
+  - name: seerbit-s4hana-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service:      hana
+      service-plan: hdi-shared
+    properties:
+      hdi-service-name: ${service-name}
+
+  # ──────────────────────────────────────────
+  # Destination Service (for S/4HANA connectivity)
+  # ──────────────────────────────────────────
+  - name: seerbit-s4hana-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service:      destination
+      service-plan: lite
+
+  # ──────────────────────────────────────────
+  # XSUAA (OAuth2 / Role-based access)
+  # ──────────────────────────────────────────
+  - name: seerbit-s4hana-xsuaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service:      xsuaa
+      service-plan: application
+      path:         ./xs-security.json

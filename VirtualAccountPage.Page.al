@@ -580,7 +580,7 @@ page 71855616
                         InsertResponseText := 'No new payment';
                         if PaymentsJsonObject.Get('payload', PaymentArrayToken) then begin
                             PaymentsArray.ReadFrom(Format(PaymentArrayToken));
-                            // Message(Format(PaymentArrayToken));
+                            //Message(Format(PaymentArrayToken));
                             //paymentsRecord.Init();
                             for Index := 0 to PaymentsArray.Count() - 1 do begin
                                 if (PaymentsArray.Get(index, PaymentArrayToken)) then begin
@@ -612,12 +612,12 @@ page 71855616
                                         end;
 
 
-                                        // Message('Payment 1 ' + Format(paymentsRecord.Id));
+                                         //Message('Payment 1 ' + Format(paymentsRecord.Id));
                                         // paymentsRecord.SetFilter(Id, Format(paymentsRecord.Id));
 
                                         if Format(statusToken).REPLACE('"', '') = 'PUSHED' then StatusMsg := 'SUCCESS' else StatusMsg := Format(statusToken).REPLACE('"', '');
 
-                                        if (PaymentsJsonObject.get('customerName', fullNameToken)) then paymentsRecord."Full Name" := Format(fullNameToken).REPLACE('"', '');
+                                        if (PaymentsJsonObject.get('fullName', fullNameToken)) then paymentsRecord."Full Name" := Format(fullNameToken).REPLACE('"', '');
                                         if (PaymentsJsonObject.get('paymentLinkId', paymentLinkIdToken)) then paymentsRecord.paymentLinkId := Format(paymentLinkIdToken).REPLACE('"', '');
                                         if (PaymentsJsonObject.get('paymentReference', paymentReferenceToken)) then paymentsRecord.paymentReference := Format(paymentReferenceToken).REPLACE('"', '');
                                         if (PaymentsJsonObject.get('amount', payLinkAmountToken)) then paymentsRecord.payLinkAmount := payLinkAmountToken.AsValue().AsDecimal();

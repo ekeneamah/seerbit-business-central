@@ -1,0 +1,32 @@
+{
+  "xsappname": "seerbit-s4hana-integration",
+  "tenant-mode": "dedicated",
+  "description": "SeerBit Payments Integration for SAP S/4HANA",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.SeerBitAdmin",
+      "description": "Manage SeerBit API configuration (public/secret keys)"
+    },
+    {
+      "name": "$XSAPPNAME.SeerBitUser",
+      "description": "Send invoices and view payment status"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "SeerBitAdmin",
+      "description": "Can configure SeerBit API keys",
+      "scope-references": [
+        "$XSAPPNAME.SeerBitAdmin",
+        "$XSAPPNAME.SeerBitUser"
+      ]
+    },
+    {
+      "name": "SeerBitUser",
+      "description": "Can send invoices and check payment status",
+      "scope-references": [
+        "$XSAPPNAME.SeerBitUser"
+      ]
+    }
+  ]
+}

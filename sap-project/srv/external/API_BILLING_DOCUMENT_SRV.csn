@@ -1,0 +1,79 @@
+{
+  "definitions": {
+    "API_BILLING_DOCUMENT_SRV": {
+      "kind": "service",
+      "@cds.external": true,
+      "@cds.persistence.skip": true
+    },
+    "A_BillingDocument": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "BillingDocument":        { "type": "cds.String", "length": 10, "@sap.label": "Billing Document", "key": true },
+        "BillingDocumentType":    { "type": "cds.String", "length": 4,  "@sap.label": "Billing Document Type" },
+        "SoldToParty":            { "type": "cds.String", "length": 10, "@sap.label": "Sold-To Party" },
+        "BillingDocumentDate":    { "type": "cds.String", "length": 30, "@sap.label": "Billing Document Date" },
+        "TotalNetAmount":         { "type": "cds.Decimal", "precision": 16, "scale": 3, "@sap.label": "Net Amount" },
+        "TransactionCurrency":    { "type": "cds.String", "length": 5,  "@sap.label": "Currency" },
+        "PaymentTerms":           { "type": "cds.String", "length": 4,  "@sap.label": "Payment Terms" },
+        "CompanyCode":            { "type": "cds.String", "length": 4,  "@sap.label": "Company Code" },
+        "SDDocumentReason":       { "type": "cds.String", "length": 3,  "@sap.label": "Reason" },
+        "CreatedByUser":          { "type": "cds.String", "length": 12, "@sap.label": "Created By" }
+      }
+    },
+    "A_BillingDocumentItem": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "BillingDocument":          { "type": "cds.String", "length": 10, "key": true },
+        "BillingDocumentItem":      { "type": "cds.String", "length": 6,  "key": true },
+        "Material":                 { "type": "cds.String", "length": 40, "@sap.label": "Material" },
+        "BillingDocumentItemText":  { "type": "cds.String", "length": 40, "@sap.label": "Item Description" },
+        "BillingQuantity":          { "type": "cds.Decimal", "precision": 13, "scale": 3 },
+        "NetAmount":                { "type": "cds.Decimal", "precision": 16, "scale": 3 },
+        "TaxAmount":                { "type": "cds.Decimal", "precision": 16, "scale": 3 },
+        "ItemNetWeight":            { "type": "cds.Decimal", "precision": 13, "scale": 3 },
+        "MaterialGroup":            { "type": "cds.String", "length": 9 }
+      }
+    },
+    "A_SalesOrder": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "SalesOrder":                   { "type": "cds.String", "length": 10, "key": true },
+        "SalesOrderType":               { "type": "cds.String", "length": 4 },
+        "SoldToParty":                  { "type": "cds.String", "length": 10 },
+        "SalesOrderDate":               { "type": "cds.String", "length": 30 },
+        "RequestedDeliveryDate":        { "type": "cds.String", "length": 30 },
+        "TotalNetAmount":               { "type": "cds.Decimal", "precision": 16, "scale": 3 },
+        "TransactionCurrency":          { "type": "cds.String", "length": 5 },
+        "SalesOrganization":            { "type": "cds.String", "length": 4 },
+        "DistributionChannel":          { "type": "cds.String", "length": 2 },
+        "SalesOffice":                  { "type": "cds.String", "length": 4 },
+        "CustomerPurchaseOrderDate":    { "type": "cds.String", "length": 30 }
+      }
+    },
+    "A_SalesOrderItem": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "SalesOrder":           { "type": "cds.String", "length": 10, "key": true },
+        "SalesOrderItem":       { "type": "cds.String", "length": 6,  "key": true },
+        "Material":             { "type": "cds.String", "length": 40 },
+        "SalesOrderItemText":   { "type": "cds.String", "length": 40 },
+        "RequestedQuantity":    { "type": "cds.Decimal", "precision": 13, "scale": 3 },
+        "NetAmount":            { "type": "cds.Decimal", "precision": 16, "scale": 3 },
+        "TaxAmount":            { "type": "cds.Decimal", "precision": 16, "scale": 3 },
+        "ItemNetWeight":        { "type": "cds.Decimal", "precision": 13, "scale": 3 }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS external service stub for API_BILLING_DOCUMENT_SRV + API_SALES_ORDER_SRV",
+    "flavor": "csn"
+  }
+}

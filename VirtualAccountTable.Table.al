@@ -21,7 +21,7 @@ table 71855611
         field(2; publicKey; Code[50])
         {
             DataClassification = CustomerContent;
-            Caption = 'Public Key';
+            Caption = 'SBT Payment Reference';
         }
 
         field(3; fullName; Text[150])

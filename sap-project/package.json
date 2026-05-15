@@ -1,0 +1,51 @@
+{
+  "name": "seerbit-s4hana-integration",
+  "version": "1.0.0",
+  "description": "SeerBit Payments integration for SAP S/4HANA via SAP CAP",
+  "repository": "https://github.com/seerbit/seerbit-s4hana",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "dev": "cds watch",
+    "build": "cds build --production",
+    "deploy:sqlite": "cds deploy --to sqlite",
+    "deploy:hana": "cds deploy --to hana",
+    "test": "jest --forceExit",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "@sap/cds": "^8",
+    "@sap/cds-dk": "^8",
+    "axios": "^1.7.9",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "jest": "^29",
+    "supertest": "^7"
+  },
+  "cds": {
+    "requires": {
+      "S4_HANA": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BILLING_DOCUMENT_SRV",
+        "credentials": {
+          "destination": "S4HANA_SYSTEM"
+        }
+      },
+      "db": {
+        "kind": "sqlite",
+        "[production]": {
+          "kind": "hana-cloud"
+        }
+      }
+    },
+    "features": {
+      "fetch_csrf": true
+    }
+  }
+}
