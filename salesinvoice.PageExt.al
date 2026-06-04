@@ -78,7 +78,7 @@ pageextension 71855617
                     Editable = false;
                 }
 
-                 field("SBP Invoice Number"; Rec."SBP SeerBit - Invoice Number")
+                field("SBP Invoice Number"; Rec."SBP SeerBit - Invoice Number")
                 {
                     Caption = 'Invoice Number';
                     ToolTip = 'Batch ID of invoice sent in a batch';
