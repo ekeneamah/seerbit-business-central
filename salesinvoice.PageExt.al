@@ -180,26 +180,24 @@ pageextension 71855617
                 ApplicationArea = All;
                 Image = Order;
                 AboutTitle = 'When all is set, you post';
-                AboutText = 'After entering the sales lines and other information, you post the invoice to make it count.? After posting, the sales invoice is moved to the Posted Sales Invoices list.';
+                AboutText = 'After entering the sales lines and other information, you post the invoice to make it count. After posting, the sales invoice is moved to the Posted Sales Invoices list.';
                 ToolTip = 'Finalize the document or journal by retrieving the payment from SeerBit and posting the amounts and quantities to the related accounts in your company books.';
                 Visible = Rec."SBP SeerBit - Invoice Number" <> '';
                 trigger OnAction()
                 var
-                    SalesInvoice: Record "Sales Header";
                     SalesOrderNo: Code[20];
                     AppMgmtInstance: Codeunit SBPSendPostedSalesInvoice;
                     Actiontype: Text;
-                    ReturnValue: Boolean;
+                    IsPaid: Boolean;
                 begin
                     Actiontype := 'Get invoice by InvoiceNo';
-                    SalesInvoice := Rec;
-                    SalesOrderNo := SalesInvoice."No.";
+                    SalesOrderNo := Rec."No.";
 
-
-                    ReturnValue := AppMgmtInstance.sendToAPI(SalesOrderNo, Actiontype, Rec."SBP SeerBit - Invoice Number");
-                    // SendToAPI(SalesOrderNo)
-                    if returnValue then CallPostDocument(CODEUNIT::"Sales-Post (Yes/No)", "Navigate After Posting"::"Posted Document");
-
+                    IsPaid := AppMgmtInstance.sendToAPI(SalesOrderNo, Actiontype, Rec."SBP SeerBit - Invoice Number");
+                    if IsPaid then
+                        CallPostDocument(CODEUNIT::"Sales-Post (Yes/No)", "Navigate After Posting"::"Posted Document")
+                    else
+                        Message('Payment was not verified as PAID. Invoice will not be posted.');
                 end;
 
 

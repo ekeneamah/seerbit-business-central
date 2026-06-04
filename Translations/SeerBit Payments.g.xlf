@@ -10879,7 +10879,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Action SBPRetrievePayment - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 3938777716 - Action 3387128727 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
-          <source>After entering the sales lines and other information, you post the invoice to make it count.? After posting, the sales invoice is moved to the Posted Sales Invoices list.</source>
+          <source>After entering the sales lines and other information, you post the invoice to make it count. After posting, the sales invoice is moved to the Posted Sales Invoices list.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP sales invoice - Action SBPRetrievePayment - Property AboutText</note>
         </trans-unit>
