@@ -159,10 +159,13 @@ pageextension 71855592
 
                     AppMgmtInstance: Codeunit SBPSendPostedSalesInvoice;
 
+                    ApiResponsePayload: Text;
                     invoiceno: Text;
                 begin
                     invoiceno := Rec."Posting Description".Replace('Invoice ', '');
+                    ApiResponsePayload := AppMgmtInstance.GetInvoiceStatusPayload(Rec);
                     AppMgmtInstance.validatepayment(Rec, invoiceno);
+                    Message('Invoice payment status updated successfully.');
 
                 end;
 

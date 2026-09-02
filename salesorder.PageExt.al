@@ -278,7 +278,6 @@ pageextension 71855594
                                 // Message('response ' + FORMAT(Paymentstoken)); //get payments
                                 if jsonObj.Get('paymentReference', TransactionRefNoToken) then begin
                                     //jsonObj.ReadFrom(FORMAT(TransactionRefNoToken)); //get reference
-                                    Message('response ' + FORMAT(TransactionRefNoToken).Replace('"', ''));
                                     Rec."SBP SeerBit Transaction Ref." := FORMAT(TransactionRefNoToken).Replace('"', '');
                                     Rec."SBP SeerBit POS Status" := 'Verified';
                                     Rec."SBP SeerBit - Invoice Number" := Rec."No.";
@@ -422,7 +421,8 @@ pageextension 71855594
         repeat
             TotalAmt := OrderRLine."Amount Including VAT" + TotalAmt;
         UNTIL OrderRLine.NEXT = 0;
-        if transactionSatus = 'Open' then Message('Total sales amount ' + FORMAT(TotalAmt) + ' Sent to POS ' + Rec."SBP SeerBit POS ID") else if not Confirm('Cancel pending transaction on POS ' + Rec."SBP SeerBit POS ID") then exit;
+        if (transactionSatus <> 'Open') and (not Confirm('Cancel pending transaction on POS ' + Rec."SBP SeerBit POS ID")) then
+            exit;
         SalesHeaderRef.close();
         CustomerRecref.Close();
         CurrentTimestamp := CurrentDateTime;
@@ -483,7 +483,6 @@ pageextension 71855594
                 Payload += '"transactionRef":"' + SalesOrderNo + '"';
                 Payload += '}';
                 content.WriteFrom(Payload);
-                Message(Payload);
                 // Retrieve the contentHeaders associated with the content
                 content.GetHeaders(contentHeaders);
                 contentHeaders.Clear();
@@ -501,7 +500,7 @@ pageextension 71855594
 
                 if postresponseText = 'Wait' then begin
                     transactionSatus := 'Wait';
-                    Message('Please wait or cancel the pending transation on POS ' + Rec."SBP SeerBit POS ID");
+                    Message('Please wait or cancel the pending transaction on POS ' + Rec."SBP SeerBit POS ID");
                 end else
                     // Message(postresponseText);
                     chk := jsonObj.ReadFrom(postresponseText);

@@ -122,8 +122,6 @@ codeunit 71855609 SBPMultiSalesInvoice
 
         RootJson.WriteTo(Payload);
         Content.WriteFrom(Payload);
-        Message('Payload: %1', Payload);
-
         if not Content.GetHeaders(contentHeaders) then
             Error('Failed to retrieve content headers.');
 
@@ -141,8 +139,6 @@ codeunit 71855609 SBPMultiSalesInvoice
 
         HttpClient.Send(Request, Response);
         Response.Content().ReadAs(ResponseText);
-        Message('Response: %1', ResponseText);
-
         if not Response.IsSuccessStatusCode() then
             Error(StrSubstNo('Failed to send invoices. Response: %1', ResponseText));
 
@@ -153,15 +149,11 @@ codeunit 71855609 SBPMultiSalesInvoice
         begin
             if JsonObj.Get('code', responseCodeToken) then begin
                 responseCodeText := responseCodeToken.AsValue().AsText();
-                Message('Response: %1', responseCodeText);
                 if responseCodeText = '00' then begin
                     if JsonObj.Get('data', jsonToken) then begin
                         DataObj := jsonToken.AsObject();
                         if DataObj.Get('batchId', responseBatchIdToken) then begin
                             BatchId := responseBatchIdToken.AsValue().AsText();
-                            Message('Batch ID: %1', BatchId);
-                            Message('Document Type: %1, Invoice No.: %2', SelectedInvoices."Document Type", SelectedInvoices."No.");
-
                             // Update the selected invoices in the database
                             if SelectedInvoices.FindSet() then begin
                                 repeat
@@ -179,7 +171,6 @@ codeunit 71855609 SBPMultiSalesInvoice
                                     end else begin
                                         Error('Record not found.');
                                     end;
-                                    Message('Invoice %1 updated with Batch ID %2', SelectedInvoices."No.", BatchId);
                                     if SelectedInvoices."No." <> '' then begin
                                         if not seerbitsalesinvoice.Get(SelectedInvoices."No.") then begin
                                             seerbitsalesinvoice.Init();
@@ -189,8 +180,7 @@ codeunit 71855609 SBPMultiSalesInvoice
                                             seerbitsalesinvoice."SeerBit - Batch ID" := BatchId;
                                             seerbitsalesinvoice.Invoiceno := SelectedInvoices."No.";
                                             seerbitsalesinvoice.Insert();
-                                        end else
-                                            Message('Invoice %1 already exists in SeerBit Sales Invoices.', SelectedInvoices."No.");
+                                        end;
                                     end else
                                         Error('Invoice number is missing for invoice %1.', SelectedInvoices."No.");
                                 until SelectedInvoices.Next() = 0;

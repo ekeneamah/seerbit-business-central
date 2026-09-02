@@ -50,7 +50,7 @@ tableextension 71855602
             DataClassification = CustomerContent;
         }
 
-        field(71855608; "SBP SeerBit - Invoice ID"; Code[10])
+        field(71855608; "SBP SeerBit - Invoice ID"; Text[100])
         {
             Caption = 'SeerBit -Invoice ID';
             DataClassification = CustomerContent;
@@ -87,8 +87,6 @@ tableextension 71855602
         sendPostedSalesInvoice: Codeunit SBPSendPostedSalesInvoice;
         invoiceno: Text;
     begin
-        Message('Sales header ' + Rec."No.");
-        //  if Rec."Posting Description".Contains('Invoice') then invoiceno := Rec."Posting Description".Replace('Invoice ', '') else invoiceno := Rec."Posting Description".Replace('Order ', '');
         sendPostedSalesInvoice.validatepayment(Rec, invoiceno);
 
     end;

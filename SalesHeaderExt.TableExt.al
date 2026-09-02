@@ -58,7 +58,7 @@ tableextension 71855614
             Caption = 'SeerBit - Payment Date';
         }
 
-        field(71855610; "SBP SeerBit - Invoice ID"; Text[23])
+        field(71855610; "SBP SeerBit - Invoice ID"; Text[100])
         {
             DataClassification = CustomerContent;
             Caption = 'SeerBit - Invoice ID';

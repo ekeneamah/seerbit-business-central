@@ -189,14 +189,25 @@ pageextension 71855617
                     AppMgmtInstance: Codeunit SBPSendPostedSalesInvoice;
                     Actiontype: Text;
                     IsPaid: Boolean;
+                    SeerBitInvoiceNo: Code[20];
+                    SeerBitInvoiceID: Text[100];
+                    SalesHeader: Record "Sales Header";
                 begin
                     Actiontype := 'Get invoice by InvoiceNo';
                     SalesOrderNo := Rec."No.";
+                    SeerBitInvoiceNo := Rec."SBP SeerBit - Invoice Number";
+                    SeerBitInvoiceID := Rec."SBP SeerBit - Invoice ID";
 
-                    IsPaid := AppMgmtInstance.sendToAPI(SalesOrderNo, Actiontype, Rec."SBP SeerBit - Invoice Number");
-                    if IsPaid then
-                        CallPostDocument(CODEUNIT::"Sales-Post (Yes/No)", "Navigate After Posting"::"Posted Document")
-                    else
+                    IsPaid := AppMgmtInstance.sendToAPI(SalesOrderNo, Actiontype, SeerBitInvoiceNo);
+                    if IsPaid then begin
+                        if SalesHeader.Get(Rec."Document Type", SalesOrderNo) then begin
+                            SeerBitInvoiceNo := SalesHeader."SBP SeerBit - Invoice Number";
+                            SeerBitInvoiceID := SalesHeader."SBP SeerBit - Invoice ID";
+                        end;
+
+                        CallPostDocument(CODEUNIT::"Sales-Post (Yes/No)", "Navigate After Posting"::"Posted Document");
+                        AppMgmtInstance.PostPaymentForPostedInvoice(SalesOrderNo, SeerBitInvoiceNo, SeerBitInvoiceID);
+                    end else
                         Message('Payment was not verified as PAID. Invoice will not be posted.');
                 end;
 

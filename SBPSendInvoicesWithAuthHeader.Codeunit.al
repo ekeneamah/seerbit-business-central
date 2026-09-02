@@ -66,8 +66,6 @@ codeunit 71855610 SBPSendInvoicesWithAuthHeader
         DataObj.ReadFrom(Format(jsonToken));
         DataObj.Get('encryptedKey', jsonToken);
         BearerToken := Format(jsonToken);
-        Message('Bearer Token: %1', BearerToken);
-
         // Step 2: Build invoice array
         Clear(InvoicesArray);
         Rec.SetFilter("No.", '<>%1', '');
@@ -104,8 +102,6 @@ codeunit 71855610 SBPSendInvoicesWithAuthHeader
 
         InvoicesArray.WriteTo(Payload);
         Content.WriteFrom(Payload);
-        Message('Payload: %1', Payload);
-
         // Step 3: Add Authorization header
         if not Content.GetHeaders(contentHeaders) then
             Error('Failed to retrieve content headers.');
@@ -129,7 +125,8 @@ codeunit 71855610 SBPSendInvoicesWithAuthHeader
 
         if not Response.IsSuccessStatusCode() then
             Error(StrSubstNo('Failed to send invoices. Response: %1', ResponseText));
-            if Response.IsSuccessStatusCode() then Message('Invoices sent successfully. Server response: %1', ResponseText)
+        if Response.IsSuccessStatusCode() then
+            Message('Invoices sent successfully.');
     end;
 
     procedure GetLastErrorText(): Text

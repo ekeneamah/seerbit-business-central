@@ -520,7 +520,6 @@ page 71855599
         payLinkAmountToken: jsonToken;
         fullNameToken: jsonToken;
         createdAtToken: jsonToken;
-        InsertResponseText: Text;
         Index: Integer;
         paymentsRecord: Record "SBPPaymentPayments";
         genraljournalline: Record "Gen. Journal Line";
@@ -536,6 +535,7 @@ page 71855599
         StatusMsg: Text;
         PaymentAccountNo: Code[20];
         BalancingAccountNo: Code[20];
+        PostedPaymentsCount: Integer;
 
     begin
         businessdetails.FindFirst();
@@ -681,9 +681,11 @@ page 71855599
             else
                 if actionType = 'Verify' then begin
 
-                    InsertResponseText := 'No new payment';
                     IF not jsonObj.Get('payload', jsonToken) then begin
-                        if jsonObj.Get('message', jsonToken) then Message(Format(jsonToken).Replace('"', '')) else Error('Invalid response from server');
+                        if jsonObj.Get('message', jsonToken) then
+                            Error(Format(jsonToken).Replace('"', ''))
+                        else
+                            Error('Invalid response from server');
                     end
                     else begin
 
@@ -727,10 +729,8 @@ page 71855599
                                     // paymentsRecord.SetFilter(Id, Format(paymentsRecord.Id));
                                     paymentsRecord.Id := paymentsRecord.Id + 1;
 
-                                    if not PaymentsJsonObject.get('status', statusToken) then begin
-                                        Message('Invalid response from server - status not found');
-                                        exit;
-                                    end;
+                                    if not PaymentsJsonObject.get('status', statusToken) then
+                                        Error('Invalid response from server: payment status is missing.');
 
                                     // Convert status (PUSHED becomes SUCCESS)
                                     if Format(statusToken).REPLACE('"', '') = 'PUSHED' then
@@ -762,7 +762,6 @@ page 71855599
 
                                     //paymentsRecord.SystemId := FORMAT(paymentReferenceToken);
                                     paymentsRecord.Insert(false);//then Status := 'success';
-                                    InsertResponseText := 'New payment saved';
 
                                     if (Rec.PaymentReference = '') or (Rec."Bal. Account No." = '') then begin
                                         Message('Please set Account Type, Account No., and Bal. Account No. before posting.');
@@ -817,7 +816,7 @@ page 71855599
 
                                     // Post directly to the General Ledger (no journal setup required)
                                     GenJnlPostLine.RunWithCheck(genraljournalline);
-                                    Message('Payment of ' + Format(payLinkAmountToken.AsValue().AsDecimal()) + ' posted using ' + Format(Rec."Account Type") + ' ' + PaymentAccountNo + ' with balancing Customer ' + BalancingAccountNo + '.');
+                                    PostedPaymentsCount += 1;
                                 end else begin
                                     paymentsRecord.FindLast();
                                     // Message('Payment count 5 ' + Format(paymentsRecord.Id));
@@ -836,7 +835,10 @@ page 71855599
                                 end;
                             end;
                         end;
-                        Message(InsertResponseText);
+                        if PostedPaymentsCount = 0 then
+                            Message('No new payments were found.')
+                        else
+                            Message('%1 new payment(s) retrieved and posted.', PostedPaymentsCount);
                     end;
                 end;
         end;
@@ -856,5 +858,3 @@ page 71855599
 
 
 }
-
-

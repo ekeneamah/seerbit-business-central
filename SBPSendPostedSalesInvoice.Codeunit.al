@@ -4,11 +4,14 @@
 codeunit 71855577 SBPSendPostedSalesInvoice
 {
     Permissions =
-        tabledata "Company Information" = R,
+        tabledata "Company Information" = RM,
         tabledata "Sales Header" = RM,
         tabledata "Sales Invoice Header" = RIMD,
         tabledata "Sales Line" = R,
-        tabledata "SBP SeerBit Invoices" = RIM;
+        tabledata "SBP SeerBit Invoices" = RIM,
+        tabledata "Payment Method" = R,
+        tabledata "Cust. Ledger Entry" = R,
+        tabledata "Gen. Journal Line" = RI;
 
     var
 
@@ -88,7 +91,6 @@ codeunit 71855577 SBPSendPostedSalesInvoice
 
         // Read the response content as json.
         response.Content().ReadAs(responseText);
-        // Message('Get response ' + responseText);
         chk := jsonObj.ReadFrom(responseText);
         IF not jsonObj.Get('data', jsonToken) then
             Error('Invalid response from server');
@@ -170,7 +172,6 @@ codeunit 71855577 SBPSendPostedSalesInvoice
         //JObjectRequest.WriteTo(PayloadJson);
         Payload += '}';
         content.WriteFrom(Payload);
-        Message('Request Payload: ' + Payload);
         // Retrieve the contentHeaders associated with the content
         content.GetHeaders(contentHeaders);
         contentHeaders.Clear();
@@ -208,13 +209,13 @@ codeunit 71855577 SBPSendPostedSalesInvoice
 
         // Read the response content as json.
         response.Content().ReadAs(postresponseText);
-        Message('Response Payload: ' + postresponseText);
         jsonObj.ReadFrom(postresponseText);
-        if jsonObj.get('status', responsestatusToken) then begin
-            Message(Format(responsestatusToken).Replace('"', ''));
-            // exit;
-        end else
-            if jsonObj.get('message', responsestatusToken) then begin Message(Format(responsestatusToken).Replace('"', '"')) end;
+        if not jsonObj.get('status', responsestatusToken) then begin
+            if jsonObj.get('message', responsestatusToken) then
+                Error(Format(responsestatusToken).Replace('"', ''))
+            else
+                Error('Invalid response from server.');
+        end;
         if not actionType.Contains('Get invoice by InvoiceNo 2') then begin
             salesHeader.SetRange("No.", salesHeader."No.");
             salesHeader.SetFilter("No.", FORMAT(InvoiceNo));
@@ -269,31 +270,40 @@ codeunit 71855577 SBPSendPostedSalesInvoice
             end
             else
                 if actionType = 'Get invoice by InvoiceNo' then begin
-                    if jsonObj.Get('payload', payloadToken) then begin
-                        jsonObj.ReadFrom(Format(payloadToken));
-                        jsonObj.Get('status', responsestatusToken);
-                        Message('Invoice Status is ' + Format(responsestatusToken));
-                        salesHeader.Reset();
-                        salesHeader.SetRange("No.", InvoiceNo);
-                        if salesHeader.FindFirst() then begin
-                            IF jsonObj.Get('status', responsestatusToken) THEN begin
-                                salesHeader."SBP SeerBit - Status" := Format(responsestatusToken).Replace('"', '');
-                                // salesHeader."SBP SeerBit Transaction Ref." :=
-                                if Format(responsestatusToken).Replace('"', '') = 'PAID' then salesHeader.SBPpaid := true else salesHeader.SBPpaid := false;
-                                salesHeader.Modify();
+                        if jsonObj.Get('payload', payloadToken) then begin
+                            jsonObj.ReadFrom(Format(payloadToken));
+                            jsonObj.Get('status', responsestatusToken);
+                            salesHeader.Reset();
+                            salesHeader.SetRange("No.", InvoiceNo);
+                            if salesHeader.FindFirst() then begin
+                                IF jsonObj.Get('status', responsestatusToken) THEN begin
+                                    salesHeader."SBP SeerBit - Status" := Format(responsestatusToken).Replace('"', '');
+                                    IF jsonObj.Get('InvoiceID', responseInvoiceIDToken) THEN
+                                        salesHeader."SBP SeerBit - Invoice ID" := Format(responseInvoiceIDToken).Replace('"', '');
+                                    IF jsonObj.Get('InvoiceNo', responsInvoiceNoToken) THEN
+                                        salesHeader."SBP SeerBit - Invoice Number" := Format(responsInvoiceNoToken).Replace('"', '');
+                                    // salesHeader."SBP SeerBit Transaction Ref." :=
+                                    if Format(responsestatusToken).Replace('"', '') = 'PAID' then salesHeader.SBPpaid := true else salesHeader.SBPpaid := false;
+                                    salesHeader.Modify();
+                                end;
                             end;
-                        end;
-                        seerbitsalesinvoice.SetRange(InvoiceNo, InvoiceNo);
-                        if seerbitsalesinvoice.FindFirst() then begin
-                            seerbitsalesinvoice."SeerBit - Status" := Format(responsestatusToken).Replace('"', '');
-                            if Format(responsestatusToken).Replace('"', '') = 'PAID' then seerbitsalesinvoice.paid := true else seerbitsalesinvoice.paid := false;
-                            seerbitsalesinvoice.InvoiceNo := InvoiceNo;
+                            seerbitsalesinvoice.SetRange(InvoiceNo, InvoiceNo);
+                            if seerbitsalesinvoice.FindFirst() then begin
+                                seerbitsalesinvoice."SeerBit - Status" := Format(responsestatusToken).Replace('"', '');
+                                IF jsonObj.Get('InvoiceID', responseInvoiceIDToken) THEN
+                                    seerbitsalesinvoice."SeerBit - Invoice ID" := Format(responseInvoiceIDToken).Replace('"', '');
+                                IF jsonObj.Get('InvoiceNo', responsInvoiceNoToken) THEN
+                                    seerbitsalesinvoice."SeerBit - Invoice Number" := Format(responsInvoiceNoToken).Replace('"', '');
+                                IF jsonObj.Get('totalAmount', responsetotalAmountToken) THEN
+                                    seerbitsalesinvoice."SeerBit - Total Amount" := responsetotalAmountToken.AsValue().AsDecimal();
+                                if Format(responsestatusToken).Replace('"', '') = 'PAID' then seerbitsalesinvoice.paid := true else seerbitsalesinvoice.paid := false;
+                                seerbitsalesinvoice.InvoiceNo := InvoiceNo;
 
-                            seerbitsalesinvoice.Modify();
+                                seerbitsalesinvoice.Modify();
+                            end;
                             if Format(responsestatusToken).Replace('"', '') = 'PAID' then EXIT(true) else exit(false);
-                        end
                     end else
-                        Error('No payment recieved yet.')
+                        Error('No payment received yet.')
 
 
 
@@ -332,7 +342,7 @@ codeunit 71855577 SBPSendPostedSalesInvoice
         if salesinvoiceHeaderRec."Posting Description".Contains('Invoice') then invoiceno := salesinvoiceHeaderRec."Posting Description".Replace('Invoice ', '') else invoiceno := salesinvoiceHeaderRec."Posting Description".Replace('Order ', '');
         seerbitInvoices.SetFilter(Invoiceno, Invoiceno);
         // message(salesinvoiceHeaderRec."Posting Description" + ' ' + salesinvoiceHeaderRec."SBP SeerBit - Invoice Number");
-        if (salesInvoiceHeader."Posting Description".Contains('Invoice')) then begin
+        if (salesinvoiceHeaderRec."Posting Description".Contains('Invoice')) then begin
             if seerbitInvoices.FindFirst() then begin
                 // salesInvoiceHeader.init();
                 // message(seerbitInvoices."SeerBit - Invoice Number");
@@ -342,13 +352,18 @@ codeunit 71855577 SBPSendPostedSalesInvoice
                 //seerbitInvoices."SBP sent to seerbit" := true;
                 seerbitInvoices."SeerBit Transaction Ref." := salesinvoiceHeaderRec."SBPSeerBitPaymentRef";
                 seerbitInvoices."SeerBit - Status" := 'Verified';
-                seerbitInvoices."SeerBit - Invoice ID" := salesinvoiceHeaderRec."No.";
-                if seerbitInvoices.Modify() then Message('Success ' + Format(salesInvoiceHeader."SBP sent to seerbit")) else Message('No record modified');
-                Message('Success ' + seerbitInvoices."SeerBit - Status");
+                seerbitInvoices."No." := salesinvoiceHeaderRec."No.";
+                salesinvoiceHeaderRec."SBP sent to seerbit" := true;
+                salesinvoiceHeaderRec.SBPpaid := true;
+                salesinvoiceHeaderRec."SBP SeerBit - Status" := 'Verified';
+                salesinvoiceHeaderRec."SBP SeerBit - Invoice Number" := seerbitInvoices."SeerBit - Invoice Number";
+                salesinvoiceHeaderRec."SBP SeerBit - Invoice ID" := seerbitInvoices."SeerBit - Invoice ID";
+                salesinvoiceHeaderRec.Modify();
+                seerbitInvoices.Modify();
 
             end //
             else
-                Message('No payment recieved by SeerBit Payment Gateway');
+                Message('No payment received by SeerBit Payment Gateway');
         end else begin
             salesHeader.SetFilter("Posting Description", salesinvoiceHeaderRec."Posting Description");
             if salesHeader.FindFirst() then begin
@@ -361,8 +376,8 @@ codeunit 71855577 SBPSendPostedSalesInvoice
                     //seerbitInvoices."SBP sent to seerbit" := true;
                     //seerbitInvoices."SeerBit Transaction Ref." :=seerbitsalesinvoice."SeerBit - Invoice Number";
                     seerbitInvoices."SeerBit - Status" := 'Verified';
-                    seerbitInvoices."SeerBit - Invoice ID" := salesinvoiceHeaderRec."No.";
-                    if seerbitInvoices.Modify() then Message('Success ' + Format(salesInvoiceHeader."SBP sent to seerbit")) else Message('No record modified');
+                    seerbitInvoices."No." := salesinvoiceHeaderRec."No.";
+                    seerbitInvoices.Modify();
                 end else begin
 
                     // Message('Sales header ' + salesHeader."SBP SeerBit POS ID" + ' Status ' + salesInvoiceHeader."No.");
@@ -372,15 +387,95 @@ codeunit 71855577 SBPSendPostedSalesInvoice
                     //seerbitInvoices."SBP sent to seerbit" := true;
                     seerbitInvoices."SeerBit Transaction Ref." := salesHeader."SBP SeerBit Transaction Ref.";
                     seerbitInvoices."SeerBit - Status" := 'Verified';
-                    seerbitInvoices."SeerBit - Invoice ID" := salesinvoiceHeaderRec."No.";
+                    seerbitInvoices."No." := salesinvoiceHeaderRec."No.";
 
 
-                    if seerbitInvoices.Modify() then Message('Success ' + Format(salesInvoiceHeader."SBP sent to seerbit")) else Message('No record modified');
+                    seerbitInvoices.Modify();
                 end
             end;
         end;
         // end else
         //   Error('Error No Record');
+    end;
+
+    procedure GetInvoiceStatusPayload(salesinvoiceHeaderRec: Record "Sales Invoice Header"): Text
+    var
+        CompanyInformation: Record "Company Information";
+        HttpClient: HttpClient;
+        Content: HttpContent;
+        GetContent: HttpContent;
+        ContentHeaders: HttpHeaders;
+        Request: HttpRequestMessage;
+        GetRequest: HttpRequestMessage;
+        Response: HttpResponseMessage;
+        JsonObj: JsonObject;
+        JsonToken: JsonToken;
+        EncryptedKey: Text;
+        GetPayload: Text;
+        Payload: Text;
+        ResponseText: Text;
+        InvoiceNo: Text;
+    begin
+        CompanyInformation.FindFirst();
+
+        GetPayload := '{';
+        GetPayload += '"key": "' + CompanyInformation.SBPSecKey + '.' + CompanyInformation.SBPPublicKey + '"';
+        GetPayload += '}';
+
+        GetContent.WriteFrom(GetPayload);
+        GetContent.GetHeaders(ContentHeaders);
+        ContentHeaders.Clear();
+        ContentHeaders.Add('Content-Type', 'application/json');
+
+        GetRequest.Content := GetContent;
+        GetRequest.SetRequestUri('https://seerbitapi.com/api/v2/encrypt/keys');
+        GetRequest.Method := 'Options';
+
+        HttpClient.Send(GetRequest, Response);
+        Response.Content().ReadAs(ResponseText);
+
+        if not JsonObj.ReadFrom(ResponseText) then
+            Error('Invalid response from SeerBit token API: %1', ResponseText);
+
+        if not JsonObj.Get('data', JsonToken) then
+            Error('Invalid response from SeerBit token API: %1', ResponseText);
+
+        JsonObj.ReadFrom(Format(JsonToken));
+        if not JsonObj.Get('EncryptedSecKey', JsonToken) then
+            Error('Invalid response from SeerBit token API: %1', ResponseText);
+
+        JsonObj.ReadFrom(Format(JsonToken));
+        if not JsonObj.Get('encryptedKey', JsonToken) then
+            Error('Invalid response from SeerBit token API: %1', ResponseText);
+
+        EncryptedKey := Format(JsonToken);
+
+        if salesinvoiceHeaderRec."Posting Description".Contains('Invoice') then
+            InvoiceNo := salesinvoiceHeaderRec."Posting Description".Replace('Invoice ', '')
+        else
+            InvoiceNo := salesinvoiceHeaderRec."Posting Description".Replace('Order ', '');
+
+        Payload := '{';
+        Payload += '"token": ' + EncryptedKey + ',';
+        Payload += '"publicKey": "' + CompanyInformation.SBPPublicKey + '",';
+        Payload += '"orderno": "' + InvoiceNo + '",';
+        Payload += '"invoiceno": "' + salesinvoiceHeaderRec."SBP SeerBit - Invoice Number" + '",';
+        Payload += '"customerEmail": "' + salesinvoiceHeaderRec."Sell-to E-Mail" + '"';
+        Payload += '}';
+
+        Content.WriteFrom(Payload);
+        Content.GetHeaders(ContentHeaders);
+        ContentHeaders.Clear();
+        ContentHeaders.Add('Content-Type', 'application/json');
+
+        Request.Content := Content;
+        Request.SetRequestUri('https://erp.middleware.seerbitapi.com/api/v1/getInvoiceByInvoiceno');
+        Request.Method := 'POST';
+
+        HttpClient.Send(Request, Response);
+        Response.Content().ReadAs(ResponseText);
+
+        exit(ResponseText);
     end;
 
     procedure update(salesinvoiceHeaderRec: Record "Sales Invoice Header")
@@ -391,17 +486,174 @@ codeunit 71855577 SBPSendPostedSalesInvoice
         invoiceno: Text;
     begin
 
-        seerbitInvoices.SetFilter("SeerBit - Invoice ID", salesinvoiceHeaderRec."No.");
-        seerbitInvoices.FindFirst();
+        seerbitInvoices.SetRange("No.", salesinvoiceHeaderRec."No.");
+        if not seerbitInvoices.FindFirst() then begin
+            seerbitInvoices.Reset();
+            if salesinvoiceHeaderRec."Posting Description".Contains('Invoice') then
+                invoiceno := salesinvoiceHeaderRec."Posting Description".Replace('Invoice ', '')
+            else
+                invoiceno := salesinvoiceHeaderRec."Posting Description".Replace('Order ', '');
+            seerbitInvoices.SetRange(Invoiceno, invoiceno);
+            if not seerbitInvoices.FindFirst() then
+                exit;
+        end;
         //Message(seerbitInvoices."SeerBit POS ID");
         salesinvoiceHeaderRec."SBP sent to seerbit" := true;
         salesinvoiceHeaderRec.SBPpaid := true;
         salesinvoiceHeaderRec."SBP SeerBit - Status" := 'Verified';
+        salesinvoiceHeaderRec."SBP SeerBit - Invoice ID" := seerbitInvoices."SeerBit - Invoice ID";
+        salesinvoiceHeaderRec."SBP SeerBit - Invoice Number" := seerbitInvoices."SeerBit - Invoice Number";
         if seerbitInvoices."SeerBit - Invoice Number" = '' then
             salesinvoiceHeaderRec."SBPSeerBitPaymentRef" := seerbitInvoices."SeerBit Transaction Ref."
         else
             salesinvoiceHeaderRec."SBPSeerBitPaymentRef" := seerbitInvoices."SeerBit - Invoice Number";
         salesinvoiceHeaderRec.Modify();
         //seerbitInvoices.Delete();
+    end;
+
+    procedure PostPaymentForPostedInvoice(SalesInvoiceNo: Code[20]; SeerBitInvoiceNo: Code[20]; SeerBitInvoiceID: Text[100])
+    var
+        PostedSalesInvoice: Record "Sales Invoice Header";
+        CustomerLedgerEntry: Record "Cust. Ledger Entry";
+        SeerBitInvoice: Record "SBP SeerBit Invoices";
+        GenJournalLine: Record "Gen. Journal Line";
+        GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line";
+        GeneralLedgerSetup: Record "General Ledger Setup";
+        PaymentAccountNo: Code[20];
+        PaymentAccountType: Enum "Gen. Journal Account Type";
+        PaymentAmount: Decimal;
+    begin
+        if not FindPostedInvoice(SalesInvoiceNo, SeerBitInvoiceNo, PostedSalesInvoice) then
+            Error('Posted sales invoice for %1 was not found. Payment was verified but could not be posted.', SalesInvoiceNo);
+
+        SeerBitInvoice.SetRange(Invoiceno, SalesInvoiceNo);
+        if SeerBitInvoice.FindFirst() then begin
+            SeerBitInvoice."No." := PostedSalesInvoice."No.";
+            SeerBitInvoice."SeerBit - Status" := 'PAID';
+            SeerBitInvoice.paid := true;
+            if SeerBitInvoiceNo <> '' then
+                SeerBitInvoice."SeerBit - Invoice Number" := SeerBitInvoiceNo;
+            if SeerBitInvoiceID <> '' then
+                SeerBitInvoice."SeerBit - Invoice ID" := SeerBitInvoiceID;
+            SeerBitInvoice.Modify();
+        end;
+
+        PostedSalesInvoice."SBP sent to seerbit" := true;
+        PostedSalesInvoice.SBPpaid := true;
+        PostedSalesInvoice."SBP SeerBit - Status" := 'PAID';
+        if SeerBitInvoiceNo <> '' then
+            PostedSalesInvoice."SBP SeerBit - Invoice Number" := SeerBitInvoiceNo;
+        if SeerBitInvoiceID <> '' then
+            PostedSalesInvoice."SBP SeerBit - Invoice ID" := SeerBitInvoiceID;
+        PostedSalesInvoice.Modify();
+
+        CustomerLedgerEntry.SetRange("Document Type", CustomerLedgerEntry."Document Type"::Invoice);
+        CustomerLedgerEntry.SetRange("Document No.", PostedSalesInvoice."No.");
+        CustomerLedgerEntry.SetRange(Open, true);
+        if not CustomerLedgerEntry.FindFirst() then begin
+            Message('Posted invoice %1 is already closed or has no open customer ledger entry.', PostedSalesInvoice."No.");
+            exit;
+        end;
+
+        CustomerLedgerEntry.CalcFields("Remaining Amount");
+        PaymentAmount := Abs(CustomerLedgerEntry."Remaining Amount");
+        if PaymentAmount = 0 then begin
+            Message('Posted invoice %1 has no remaining amount to apply.', PostedSalesInvoice."No.");
+            exit;
+        end;
+
+        if PostedSalesInvoice."Payment Method Code" = '' then
+            PostedSalesInvoice."Payment Method Code" := 'SEERBIT';
+
+        GetSettlementAccount(PostedSalesInvoice."Payment Method Code", PaymentAccountType, PaymentAccountNo);
+        GeneralLedgerSetup.Get();
+
+        GenJournalLine.Init();
+        GenJournalLine."Line No." := 10000;
+        GenJournalLine."Posting Date" := Today;
+        GenJournalLine."Document Type" := "Gen. Journal Document Type"::Payment;
+        GenJournalLine."Document No." := CopyStr('SBP-' + PostedSalesInvoice."No.", 1, MaxStrLen(GenJournalLine."Document No."));
+        GenJournalLine."External Document No." := CopyStr(SeerBitInvoiceNo, 1, MaxStrLen(GenJournalLine."External Document No."));
+        GenJournalLine."Account Type" := "Gen. Journal Account Type"::Customer;
+        GenJournalLine.Validate("Account No.", CustomerLedgerEntry."Customer No.");
+        GenJournalLine.Description := CopyStr('SeerBit Invoice Payment - ' + PostedSalesInvoice."No.", 1, MaxStrLen(GenJournalLine.Description));
+
+        if (PostedSalesInvoice."Currency Code" <> '') and (PostedSalesInvoice."Currency Code" <> GeneralLedgerSetup."LCY Code") and (PostedSalesInvoice."Currency Code" <> 'NGN') then
+            GenJournalLine.Validate("Currency Code", PostedSalesInvoice."Currency Code")
+        else
+            GenJournalLine."Currency Code" := '';
+
+        GenJournalLine.Validate(Amount, -PaymentAmount);
+        if GenJournalLine."Currency Code" = '' then
+            GenJournalLine."Amount (LCY)" := GenJournalLine.Amount;
+
+        GenJournalLine."Bal. Account Type" := PaymentAccountType;
+        GenJournalLine.Validate("Bal. Account No.", PaymentAccountNo);
+        GenJournalLine.Validate("Applies-to Doc. Type", GenJournalLine."Applies-to Doc. Type"::Invoice);
+        GenJournalLine.Validate("Applies-to Doc. No.", PostedSalesInvoice."No.");
+        GenJournalLine."SBPSeerBit - Tx. Refenece" := CopyStr(SeerBitInvoiceNo, 1, MaxStrLen(GenJournalLine."SBPSeerBit - Tx. Refenece"));
+        GenJournalLine."SBPSeerBit - Payment Date" := Format(Today);
+        GenJournalLine."SBPSeerBit -Doc. Type" := 'Invoice';
+
+        GenJnlPostLine.RunWithCheck(GenJournalLine);
+        Message('SeerBit payment for invoice %1 has been posted and applied.', PostedSalesInvoice."No.");
+    end;
+
+    local procedure FindPostedInvoice(SalesInvoiceNo: Code[20]; SeerBitInvoiceNo: Code[20]; var PostedSalesInvoice: Record "Sales Invoice Header"): Boolean
+    begin
+        PostedSalesInvoice.Reset();
+        PostedSalesInvoice.SetRange("Pre-Assigned No.", SalesInvoiceNo);
+        if PostedSalesInvoice.FindLast() then
+            exit(true);
+
+        PostedSalesInvoice.Reset();
+        PostedSalesInvoice.SetRange("SBP SeerBit - Invoice Number", SeerBitInvoiceNo);
+        if (SeerBitInvoiceNo <> '') and PostedSalesInvoice.FindLast() then
+            exit(true);
+
+        PostedSalesInvoice.Reset();
+        PostedSalesInvoice.SetRange("No.", SalesInvoiceNo);
+        if PostedSalesInvoice.FindLast() then
+            exit(true);
+
+        PostedSalesInvoice.Reset();
+        PostedSalesInvoice.SetRange("Posting Description", 'Invoice ' + SalesInvoiceNo);
+        exit(PostedSalesInvoice.FindLast());
+    end;
+
+    local procedure GetSettlementAccount(PaymentMethodCode: Code[10]; var PaymentAccountType: Enum "Gen. Journal Account Type"; var PaymentAccountNo: Code[20])
+    var
+        CompanyInformation: Record "Company Information";
+        PaymentMethod: Record "Payment Method";
+    begin
+        CompanyInformation.Get();
+        if CompanyInformation."SBP Settlement Account No." <> '' then begin
+            if not (CompanyInformation."SBP Settlement Account Type" in
+                    [CompanyInformation."SBP Settlement Account Type"::"G/L Account",
+                     CompanyInformation."SBP Settlement Account Type"::"Bank Account"])
+            then
+                Error('SeerBit Settlement Account Type must be G/L Account or Bank Account.');
+
+            PaymentAccountType := CompanyInformation."SBP Settlement Account Type";
+            PaymentAccountNo := CompanyInformation."SBP Settlement Account No.";
+            exit;
+        end;
+
+        if not PaymentMethod.Get(PaymentMethodCode) then
+            Error('Set SeerBit Settlement Account Type and Settlement Account No. on Company Information, or create Payment Method %1 with a balancing account.', PaymentMethodCode);
+
+        if PaymentMethod."Bal. Account No." = '' then
+            Error('Set SeerBit Settlement Account Type and Settlement Account No. on Company Information, or add a Bal. Account No. to Payment Method %1.', PaymentMethod.Code);
+
+        case Format(PaymentMethod."Bal. Account Type") of
+            'G/L Account':
+                PaymentAccountType := "Gen. Journal Account Type"::"G/L Account";
+            'Bank Account':
+                PaymentAccountType := "Gen. Journal Account Type"::"Bank Account";
+            else
+                Error('Payment Method %1 must use G/L Account or Bank Account as the balancing account type.', PaymentMethod.Code);
+        end;
+
+        PaymentAccountNo := PaymentMethod."Bal. Account No.";
     end;
 }

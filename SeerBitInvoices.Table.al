@@ -60,7 +60,7 @@ table 71855610
             Caption = 'SeerBit - Payment Date';
         }
 
-        field(9; "SeerBit - Invoice ID"; Text[23])
+        field(9; "SeerBit - Invoice ID"; Text[100])
         {
             DataClassification = CustomerContent;
             Caption = 'SeerBit - Invoice ID';

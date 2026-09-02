@@ -65,6 +65,27 @@ pageextension 71855575 "SBP Business Profile List" extends "Company Information"
                     Caption = 'Business Email';
                     Editable = true;
                 }
+                field("SBP Settlement Account Type"; Rec."SBP Settlement Account Type")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Settlement Account Type';
+                    ToolTip = 'Select the account type for SeerBit settlement postings.';
+                    Editable = true;
+
+                    trigger OnValidate()
+                    begin
+                        if xRec."SBP Settlement Account Type" <> Rec."SBP Settlement Account Type" then
+                            Rec."SBP Settlement Account No." := '';
+                    end;
+                }
+                field("SBP Settlement Account No."; Rec."SBP Settlement Account No.")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Settlement Account No.';
+                    ToolTip = 'Select the bank or G/L account that receives SeerBit settlements.';
+                    Editable = true;
+                    ShowMandatory = true;
+                }
             }
 
 

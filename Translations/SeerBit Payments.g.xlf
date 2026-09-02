@@ -1223,10 +1223,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit SBPSendPostedSalesInvoice - Method validatepayment</note>
         </trans-unit>
+        <trans-unit id="Codeunit 730393903 - Method 1044948812" size-unit="char" translate="yes" xml:space="preserve">
+          <source>GetInvoiceStatusPayload</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit SBPSendPostedSalesInvoice - Method GetInvoiceStatusPayload</note>
+        </trans-unit>
         <trans-unit id="Codeunit 730393903 - Method 227630856" size-unit="char" translate="yes" xml:space="preserve">
           <source>update</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit SBPSendPostedSalesInvoice - Method update</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 730393903 - Method 666393400" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PostPaymentForPostedInvoice</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit SBPSendPostedSalesInvoice - Method PostPaymentForPostedInvoice</note>
         </trans-unit>
         <trans-unit id="Page 1603641959 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source></source>
@@ -10713,6 +10723,61 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Secret Key - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 938560310 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account No. - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 938560310 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source>Select the bank or G/L account that receives SeerBit settlements.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 938560310 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account No. - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 938560310 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account No. - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 938560310 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source>Settlement Account No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 850659823 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account Type - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 850659823 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source>Select the account type for SeerBit settlement postings.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 850659823 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account Type - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 850659823 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account Type - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 850659823 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source>Settlement Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2473314674 - Control 850659823 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SBP Business Profile List - Control SBP Settlement Account Type - Property OptionCaption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 3938777716 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4034894651">
           <source></source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -13997,6 +14062,26 @@
           <source>SBP Default Currency</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension SBPBusiness Profile - Field SBP Default Currency - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2997932480 - Field 938560310 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension SBPBusiness Profile - Field SBP Settlement Account No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2997932480 - Field 938560310 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Settlement Account No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension SBPBusiness Profile - Field SBP Settlement Account No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2997932480 - Field 850659823 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source></source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension SBPBusiness Profile - Field SBP Settlement Account Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2997932480 - Field 850659823 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Settlement Account Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension SBPBusiness Profile - Field SBP Settlement Account Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2997932480 - Field 520269779 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source></source>

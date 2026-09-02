@@ -42,6 +42,20 @@ tableextension 71855609
         {
             DataClassification = CustomerContent;
         }
+        field(71855607; "SBP Settlement Account Type"; Enum "Gen. Journal Account Type")
+        {
+            Caption = 'Settlement Account Type';
+            DataClassification = CustomerContent;
+            InitValue = "Bank Account";
+        }
+        field(71855608; "SBP Settlement Account No."; Code[20])
+        {
+            Caption = 'Settlement Account No.';
+            DataClassification = CustomerContent;
+            TableRelation =
+                if ("SBP Settlement Account Type" = const("G/L Account")) "G/L Account" where("Account Type" = const(Posting))
+            else if ("SBP Settlement Account Type" = const("Bank Account")) "Bank Account";
+        }
         field(71855609; SBPRecId; Integer)
         {
             DataClassification = CustomerContent;
